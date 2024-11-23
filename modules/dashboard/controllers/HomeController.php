@@ -4,7 +4,8 @@ namespace dashboard\controllers;
 
 use Yii;
 use yii\web\Response;
-
+//use dashboard\models\contactForm;
+use mail\models\static\contactForm;
 class HomeController extends \helpers\DashboardController
 {
     /**
@@ -76,4 +77,21 @@ class HomeController extends \helpers\DashboardController
         Yii::$app->response->sendFile($file, false, ['mimeType' => 'json', 'inline' => true]);
         return true;
     }
+     /**
+     * Displays contact page.
+     *
+     * @return Response|string
+     */
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('success', 'check your email');
+
+            return $this->refresh();
+        }
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+}
 }

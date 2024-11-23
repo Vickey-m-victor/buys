@@ -8,7 +8,7 @@ namespace auth;
  * @OA\Info(
  *     description="API documentation for auth module",
  *     version="1.0.0",
- *     title="Authentication & Authorization Module",
+ *     title="auth Module",
  *     @OA\Contact(
  *         email="admin@crackit.co.ke",
  *         name="Ananda Douglas"
@@ -20,14 +20,22 @@ namespace auth;
  * )
  */ 
 
-class Module extends \helpers\BaseModule
+class Module extends \helpers\ApiModule
 {
     /**
      * {@inheritdoc}
      */
     public $controllerNamespace = 'auth\controllers';
-    public $name = 'Auth. Module';
+    public $name = 'auth';
 
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
+    {
+        parent::init();
+
+    }
 }
 
 /**

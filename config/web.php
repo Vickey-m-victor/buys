@@ -78,11 +78,40 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        // 'mailer' => [
+        //     'class' => \yii\symfonymailer\Mailer::class,
+        //     'viewPath' => '@app/mail',
+        //     'useFileTransport' => true,
+        // ],
+        // 'mailer' => [
+        //     'class' => 'yii\swiftmailer\Mailer',
+        //     'viewPath' => '@app/mail',
+        //     'useFileTransport' => false,
+        //     'transport' => [
+        //               'class' => 'Swift_SmtpTransport',
+        //               'host' => 'smtp.gmail.com',
+        //               'username' => 'mutuavictor476@gmail.com',
+        //               'password' => "bdgv mitc grnc kgbm",
+        //               'port' => '587',
+        //               'encryption' => 'tls',
+        //           ],
+        // ],
+        // 
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
+            'transport' => [
+                'class' => \Swift_SmtpTransport::class,
+                'host' => 'smtp.gmail.com',
+                'username' => 'mutuavictor476@gmail.com',
+                'password' => 'bdgv mitc grnc kgbm',
+                'port' => 465,
+                'scheme' => 'smtps',
+                'encryption' => 'tls',
+            ],
             'viewPath' => '@app/mail',
-            'useFileTransport' => true,
+            'useFileTransport' => false,
         ],
+        
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

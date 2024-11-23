@@ -2,6 +2,7 @@
 require_once __DIR__ . '/wrapper.php';
 $userMenu = [
     ['title' => 'Dashboard', 'icon' => 'home', 'url' => 'home/index'],
+    ['title' => 'Contact', 'icon' => 'phone', 'url' => 'home/contact'],
     ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
         ['title' => 'User Management', 'url' => 'accounts/index'],
         ['title' => 'Manage Roles', 'url' => 'role/index'],

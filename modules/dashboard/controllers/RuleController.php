@@ -1,6 +1,6 @@
 <?php
 
-namespace mdm\admin\controllers;
+namespace dashboard\controllers;
 
 use Yii;
 use auth\hooks\Helper;

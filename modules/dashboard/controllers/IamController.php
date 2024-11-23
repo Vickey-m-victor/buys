@@ -4,7 +4,6 @@ namespace dashboard\controllers;
 
 use Yii;
 use auth\models\static\Login;
-
 class IamController extends \helpers\DashboardController
 {
     public function actionLogin()
@@ -30,5 +29,5 @@ class IamController extends \helpers\DashboardController
 
         return $this->goHome();
     }
-
+    
 }
