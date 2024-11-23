@@ -32,6 +32,8 @@ $config = [
                 'pathMap' => [
                     '@app/views' => '@ui/views',
                     '@dashboard/views' => '@ui/views',
+                    '@cms/views' => '@ui/views',
+                    '@frontend/views' => '@ui/views',
                 ],
             ],
         ],
