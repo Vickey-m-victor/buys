@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use helpers\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var cms\models\searches\ServicesSearch $searchModel */
+/** @var cms\models\searches\servicesSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Services';
@@ -44,7 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'slug',
-            'content:ntext',
+            'description:ntext',
+            [
+              'attribute' => 'imageURL',
+              'format' => 'html', // Render as HTML
+              'value' => function ($model) {
+                  return Html::img($model->imageURL, ['alt' => $model->title, 'style' => 'width: 100px;']);
+              },
+          ],
+            //'is_published',
+            //'is_deleted',
+            //'created_at',
+            //'updated_at',
             [
                 'class' => \helpers\grid\ActionColumn::className(),
                 'template' => '{update} {trash}',
