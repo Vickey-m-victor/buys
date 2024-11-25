@@ -38,8 +38,10 @@ class SiteController extends \helpers\WebController
     } 
     public function actionServices()
     {
-        //Yii::$app->session->setFlash('success', 'Link created successfully');
         return $this->render('services');
+    }
+    public function actionBanners(){
+        return $this->render('banners');
     }
 
     public function actionDocs($mod = 'dashboard')
