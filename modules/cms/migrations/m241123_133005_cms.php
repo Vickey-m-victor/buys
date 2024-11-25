@@ -12,14 +12,14 @@ class m241123_133005_cms extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('banners',[
-            'id'=> $this->primaryKey(),
-            'title'=> $this->string()->notNull(),
-            'description'=> $this->string()->notNull(),
-            'imageURL'=>$this->string(),
+        $this->createTable('banners', [
+            'id' => $this->primaryKey(),
+            'title' => $this->string()->notNull(),
+            'description' => $this->string()->notNull(),
+            'imageURL' => $this->string(),
             'is_published' => $this->boolean()->defaultValue(0),
             'is_deleted' => $this->boolean()->defaultValue(0),
-             'created_at' => $this->integer(),
+            'created_at' => $this->integer(),
             'updated_at' => $this->integer()
 
 
@@ -31,8 +31,18 @@ class m241123_133005_cms extends Migration
             'email' => $this->string(255)->notNull(),
             'is_published' => $this->boolean()->defaultValue(0),
             'is_deleted' => $this->boolean()->defaultValue(0),
-             'created_at' => $this->integer(),
+            'created_at' => $this->integer(),
             'updated_at' => $this->integer()
+
+        ]);
+        $this->insert('contact_info', [
+            'address' => '123 Main Street, Cityville',
+            'phone' => '123-456-7890',
+            'email' => 'info@example.com',
+            'is_published' => 1, // Published
+            'is_deleted' => 0,   // Not deleted
+            'created_at' => time(),
+            'updated_at' => time(),
 
         ]);
         $this->createTable('basic_info', [
@@ -53,7 +63,7 @@ class m241123_133005_cms extends Migration
             'icon' => $this->string(),
             'link' => $this->string()->notNull(),
             'is_published' => $this->boolean()->defaultValue(1),
-             'created_at' => $this->integer(),
+            'created_at' => $this->integer(),
             'updated_at' => $this->integer()
 
         ]);
@@ -65,21 +75,21 @@ class m241123_133005_cms extends Migration
             'imageURL' => $this->string(),
             'is_published' => $this->boolean()->defaultValue(0),
             'is_deleted' => $this->boolean()->defaultValue(0),
-             'created_at' => $this->integer(),
+            'created_at' => $this->integer(),
             'updated_at' => $this->integer()
 
 
 
         ]);
-        
-       
+
+
         $this->createTable('partners', [
             'id' => $this->primaryKey(),
             'title' => $this->string(),
             'imageURL' => $this->string(),
             'is_published' => $this->boolean()->defaultValue(0),
             'is_deleted' => $this->boolean()->defaultValue(0),
-             'created_at' => $this->integer(),
+            'created_at' => $this->integer(),
             'updated_at' => $this->integer()
 
 
@@ -89,25 +99,25 @@ class m241123_133005_cms extends Migration
         $this->createTable('services', [
             'id' => $this->primaryKey(),
             'title' => $this->string(255)->notNull(),
-          
+
             'description' => $this->text()->notNull(),
             'imageURL' => $this->string(255),
             'is_published' => $this->boolean()->defaultValue(0),
             'is_deleted' => $this->boolean()->defaultValue(0),
-             'created_at' => $this->integer(),
+            'created_at' => $this->integer(),
             'updated_at' => $this->integer()
 
         ]);
 
-      
-    
+
+
 
         $this->createTable('faqs', [
             'id' => $this->primaryKey(),
             'question' => $this->string()->notNull(),
             'answer' => $this->text()->notNull(),
             'is_published' => $this->boolean()->defaultValue(1),
-             'created_at' => $this->integer(),
+            'created_at' => $this->integer(),
             'updated_at' => $this->integer()
 
         ]);

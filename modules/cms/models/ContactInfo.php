@@ -16,6 +16,21 @@ use Yii;
  * @property int|null $created_at
  * @property int|null $updated_at
  */
+// $model = new ContactInfo();
+// $model->id = 1;
+// $model->address = '123 Main Street, Cityville';
+// $model->phone = '123-456-7890';
+// $model->email = 'info@example.com';
+// $model->is_published = 1; // Published
+// $model->is_deleted = 0;   // Not deleted
+// $model->created_at = time();
+// $model->updated_at = time();
+
+// if ($model->save()) {
+//     echo "Contact information saved successfully!";
+// } else {
+//     echo "Error saving contact information.";
+// }
 class ContactInfo extends \yii\db\ActiveRecord
 {
     /**

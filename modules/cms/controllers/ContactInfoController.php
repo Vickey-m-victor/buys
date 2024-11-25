@@ -61,7 +61,7 @@ class ContactInfoController extends DashboardController
                 if ($model->validate()) {
                     if ($model->save()) {
                         Yii::$app->session->setFlash('success', 'ContactInfo updated successfully');
-                        return $this->redirect(['index']);
+                        return $this->redirect(['/dashboard']);
                     }
                 }
             }

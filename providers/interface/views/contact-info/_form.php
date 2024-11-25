@@ -21,16 +21,11 @@ use helpers\widgets\ActiveForm;
           <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-12">
-          <?= $form->field($model, 'is_published')->textInput() ?>
-        </div>
-        <div class="col-md-12">
-          <?= $form->field($model, 'is_deleted')->textInput() ?>
-        </div>
-        <div class="col-md-12">
-          <?= $form->field($model, 'created_at')->textInput() ?>
-        </div>
-        <div class="col-md-12">
-          <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?= $form->field($model, 'is_published')->radioList(
+        [1 => 'Published', 0 => 'Unpublished'] // Radio options
+    ) ?>
+</div>
+      
         </div>
     </div>
     <div class="block-content block-content-full text-center">
