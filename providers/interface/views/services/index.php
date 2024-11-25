@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'title',
-            'slug',
+    
             'description:ntext',
             [
               'attribute' => 'imageURL',
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   return Html::img($model->imageURL, ['alt' => $model->title, 'style' => 'width: 100px;']);
               },
           ],
-            //'is_published',
+            // 'is_published',
             //'is_deleted',
             //'created_at',
             //'updated_at',
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'update' => function ($url, $model, $key) {
                         return Html::customButton(['type' => 'modal', 'url' => Url::toRoute(['update', 'id' => $model->id]), 'modal' => ['title' => 'Update  Services'], 'appearence' => ['icon' => 'edit', 'theme' => 'info']]);
                     },
-                    
+
                     'trash' => function ($url, $model, $key) {
                         return $model->is_deleted !== 1 ?
                             Html::customButton(['type' => 'link', 'url' => Url::toRoute(['trash', 'id' => $model->id]),  'appearence' => ['icon' => 'trash', 'theme' => 'danger', 'data' => ['message' => 'Do you want to delete this services?']]]) :

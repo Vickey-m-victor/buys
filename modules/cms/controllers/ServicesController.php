@@ -83,11 +83,11 @@ class ServicesController extends DashboardController
     {
         $model = $this->findModel($id);
         if ($model->is_deleted) {
-            Yii::$app->user->can('cms-services-restore');
+            // Yii::$app->user->can('cms-services-restore');
             $model->restore();
             Yii::$app->session->setFlash('success', 'Services has been restored');
         } else {
-            Yii::$app->user->can('cms-services-delete');
+            // Yii::$app->user->can('cms-services-delete');
             if (!empty($model->imageURL)) {
                 $filePath = Yii::getAlias('@webroot') . parse_url($model->imageURL, PHP_URL_PATH);
                 if (file_exists($filePath)) {
