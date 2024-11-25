@@ -40,8 +40,10 @@ class m241123_133005_cms extends Migration
             'name' => $this->string()->notNull(),
             'logoUrl' => $this->string(),
             'url' => $this->string()->notNull(),
-            'version' => $this->string(),
-            'mission' => $this->string()
+            'mission' => $this->string(),
+            'vision' => $this->string(),
+
+
 
 
         ]);
@@ -69,10 +71,11 @@ class m241123_133005_cms extends Migration
 
 
         ]);
-        $this->createTable('whyus', [
+        
+       
+        $this->createTable('partners', [
             'id' => $this->primaryKey(),
             'title' => $this->string(),
-            'description' => $this->text(),
             'imageURL' => $this->string(),
             'is_published' => $this->boolean()->defaultValue(0),
             'is_deleted' => $this->boolean()->defaultValue(0),
@@ -96,33 +99,8 @@ class m241123_133005_cms extends Migration
 
         ]);
 
-        $this->createTable('products', [
-            'id' => $this->primaryKey(),
-            'title' => $this->string(),
-            'description' => $this->text(),
-            'technology' => $this->string(),
-            'imageURL' => $this->string(),
-            'is_published' => $this->boolean()->defaultValue(0),
-            'is_deleted' => $this->boolean()->defaultValue(0),
-             'created_at' => $this->integer(),
-            'updated_at' => $this->integer()
-
-
-        ]);
       
-        $this->createTable('contact_messages', [
-            'id' => $this->primaryKey(),
-            'name' => $this->string(),
-            'email' => $this->string(),
-            'subject' => $this->string(),
-            'message' => $this->text(),
-            'is_read' => $this->boolean()->defaultValue(0),
-            'is_deleted' => $this->boolean()->defaultValue(0),
-             'created_at' => $this->integer(),
-            'updated_at' => $this->integer()
-
-
-        ]);
+    
 
         $this->createTable('faqs', [
             'id' => $this->primaryKey(),

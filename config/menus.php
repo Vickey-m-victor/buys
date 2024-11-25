@@ -17,7 +17,7 @@ $userMenu = [
     ['title' => 'Contact', 'icon' => 'phone', 'url' => '/dashboard/home/contact'],
     ['title'=>'banners','icon'=>'flag','url'=>'/cms/banners/index'],
     ['title'=> 'Services','icon'=> 'computer','url'=>'/cms/services/index'],
-    ['title'=> 'Products','icon'=> 'signal','url'=> '/cms/products/index'],
+    ['title'=> 'Partners','icon'=> 'signal','url'=> '/cms/products/index'],
      ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
         ['title' => 'User Management', 'url' => '/dashboard/profile/index'],
         ['title' => 'Manage Roles', 'url' => '/dashboard/role/index'],

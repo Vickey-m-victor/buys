@@ -5,37 +5,36 @@ namespace cms\models;
 use Yii;
 
 /**
- * This is the model class for table "products".
+ * This is the model class for table "contact_info".
  *
  * @property int $id
- * @property string|null $title
- * @property string|null $imageURL
+ * @property string $address
+ * @property string $phone
+ * @property string $email
  * @property int|null $is_published
  * @property int|null $is_deleted
  * @property int|null $created_at
  * @property int|null $updated_at
  */
-class Products extends \yii\db\ActiveRecord
+class ContactInfo extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'partners';
+        return 'contact_info';
     }
 
     /**
      * {@inheritdoc}
      */
-    public $file;
     public function rules()
     {
         return [
-          
+            [['address', 'phone', 'email'], 'required'],
             [['is_published', 'is_deleted', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'imageURL'], 'string', 'max' => 255],
-            [['file'],'file', 'extensions' => 'png,jpeg,jpg,svg', 'skipOnEmpty' => true]
+            [['address', 'phone', 'email'], 'string', 'max' => 255],
         ];
     }
 
@@ -46,9 +45,10 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'imageURL' => 'Partner Image',
-            'is_published' => '',
+            'address' => 'Address',
+            'phone' => 'Phone',
+            'email' => 'Email',
+            'is_published' => 'Is Published',
             'is_deleted' => 'Is Deleted',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
