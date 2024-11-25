@@ -14,7 +14,7 @@ $userMenu = [
         ],
         
     ],
-    ['title' => 'Contact', 'icon' => 'phone', 'url' => 'home/contact'],
+    ['title' => 'Contact', 'icon' => 'phone', 'url' => '/dashboard/home/contact'],
     ['title'=>'banners','icon'=>'car','url'=>'/cms/banners/index'],
     ['title'=> 'Services','icon'=> 'phone','submenus'=>[
 ['title'=>'Services','url'=>'/cms/services/index'],
