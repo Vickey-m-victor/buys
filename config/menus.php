@@ -17,7 +17,7 @@ $userMenu = [
     ['title' => 'Contact', 'icon' => 'phone', 'url' => 'home/contact'],
     ['title'=> 'Services','icon'=> 'phone','submenus'=>[
 ['title'=>'Services','url'=>'/cms/services/index'],
-['title'=>'add service','url'=>'/cms/services/create'],
+
     ]],
     ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
         ['title' => 'User Management', 'url' => 'profile/index'],
