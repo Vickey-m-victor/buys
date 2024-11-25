@@ -65,6 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'update' => function ($url, $model, $key) {
                         return Html::customButton(['type' => 'modal', 'url' => Url::toRoute(['update', 'id' => $model->id]), 'modal' => ['title' => 'Update  Services'], 'appearence' => ['icon' => 'edit', 'theme' => 'info']]);
                     },
+                    
                     'trash' => function ($url, $model, $key) {
                         return $model->is_deleted !== 1 ?
                             Html::customButton(['type' => 'link', 'url' => Url::toRoute(['trash', 'id' => $model->id]),  'appearence' => ['icon' => 'trash', 'theme' => 'danger', 'data' => ['message' => 'Do you want to delete this services?']]]) :
