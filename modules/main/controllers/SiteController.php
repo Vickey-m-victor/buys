@@ -35,7 +35,13 @@ class SiteController extends \helpers\WebController
     {
         //Yii::$app->session->setFlash('success', 'Link created successfully');
         return $this->render('index');
+    } 
+    public function actionServices()
+    {
+        //Yii::$app->session->setFlash('success', 'Link created successfully');
+        return $this->render('services');
     }
+
     public function actionDocs($mod = 'dashboard')
     {
         //$this->viewPath = '@swagger';

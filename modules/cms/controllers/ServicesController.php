@@ -69,7 +69,7 @@ class ServicesController extends DashboardController
                 }
 
                 Yii::$app->session->setFlash('success', 'Service updated successfully.');
-                return $this->redirect(['view', 'model' => $model]);
+                return $this->redirect(['index', 'model' => $model]);
             }
 
             Yii::$app->session->setFlash('error', 'Failed to update the service.');
