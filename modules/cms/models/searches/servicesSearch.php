@@ -1,15 +1,15 @@
 <?php
 
-namespace frontend\models\searches;
+namespace cms\models\searches;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Services;
+use cms\models\Services;
 
 /**
- * ServicesSearch represents the model behind the search form of `frontend\models\Services`.
+ * servicesSearch represents the model behind the search form of `cms\models\Services`.
  */
-class ServicesSearch extends Services
+class servicesSearch extends Services
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class ServicesSearch extends Services
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['title', 'slug', 'content'], 'safe'],
+            [['id', 'is_published', 'is_deleted', 'created_at', 'updated_at'], 'integer'],
+            [['title', 'slug', 'description', 'imageURL'], 'safe'],
             ['globalSearch', 'safe']
         ];
     }
@@ -64,19 +64,29 @@ class ServicesSearch extends Services
         if(isset($this->globalSearch)){
                 $query->orFilterWhere([
             'id' => $this->globalSearch,
+            'is_published' => $this->globalSearch,
+            'is_deleted' => $this->globalSearch,
+            'created_at' => $this->globalSearch,
+            'updated_at' => $this->globalSearch,
         ]);
 
         $query->orFilterWhere(['like', 'title', $this->globalSearch])
             ->orFilterWhere(['like', 'slug', $this->globalSearch])
-            ->orFilterWhere(['like', 'content', $this->globalSearch]);
+            ->orFilterWhere(['like', 'description', $this->globalSearch])
+            ->orFilterWhere(['like', 'imageURL', $this->globalSearch]);
         }else{
                 $query->andFilterWhere([
             'id' => $this->id,
+            'is_published' => $this->is_published,
+            'is_deleted' => $this->is_deleted,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'content', $this->content]);
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'imageURL', $this->imageURL]);
         }
         return $dataProvider;
     }

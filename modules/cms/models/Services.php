@@ -10,13 +10,19 @@ use Yii;
  * @property int $id
  * @property string $title
  * @property string|null $slug
- * @property string|null $content
+ * @property string $description
+ * @property string|null $imageURL
+ * @property int|null $is_published
+ * @property int|null $is_deleted
+ * @property int|null $created_at
+ * @property int|null $updated_at
  */
 class Services extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
+    public $file;
     public static function tableName()
     {
         return 'services';
@@ -28,10 +34,12 @@ class Services extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
-            [['content'], 'string'],
-            [['title', 'slug'], 'string', 'max' => 255],
+            [['title', 'description'], 'required'],
+            [['description'], 'string'],
+            [['is_published', 'is_deleted', 'created_at', 'updated_at'], 'integer'],
+            [['title', 'slug', 'imageURL'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            [['file'], 'file', 'extensions' => 'png,jpeg,jpg,svg', 'maxSize' => 1024 * 1024, 'skipOnEmpty' => false],
         ];
     }
 
@@ -44,7 +52,12 @@ class Services extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'slug' => 'Slug',
-            'content' => 'Content',
+            'description' => 'Description',
+            'imageURL' => 'Image File',
+            'is_published' => 'Is Published',
+            'is_deleted' => 'Is Deleted',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
 }
