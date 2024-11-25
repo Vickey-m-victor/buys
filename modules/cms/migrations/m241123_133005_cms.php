@@ -12,6 +12,18 @@ class m241123_133005_cms extends Migration
      */
     public function safeUp()
     {
+        $this->createTable('banners',[
+            'id'=> $this->primaryKey(),
+            'title'=> $this->string()->notNull(),
+            'description'=> $this->string()->notNull(),
+            'imageURL'=>$this->string(),
+            'is_published' => $this->boolean()->defaultValue(0),
+            'is_deleted' => $this->boolean()->defaultValue(0),
+             'created_at' => $this->integer(),
+            'updated_at' => $this->integer()
+
+
+        ]);
         $this->createTable('contact_info', [
             'id' => $this->primaryKey(),
             'address' => $this->string(255)->notNull(),

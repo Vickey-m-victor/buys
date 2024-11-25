@@ -2,7 +2,7 @@
 require_once __DIR__ . '/wrapper.php';
 $userMenu = [
     ['title' => 'Dashboard', 'icon' => 'home', 'submenus'=>[
-        ['title'=>'Testimonials','url'=>'testimonials/index'],
+        
         ['title'=>'Projects','url'=>'projects/index'],
         ['title'=>'Team','url'=>'team/index'],
         ['title'=>'Settings','url'=>'settings'],
@@ -15,8 +15,10 @@ $userMenu = [
         
     ],
     ['title' => 'Contact', 'icon' => 'phone', 'url' => 'home/contact'],
+    ['title'=>'banners','icon'=>'car','url'=>'/cms/banners/index'],
     ['title'=> 'Services','icon'=> 'phone','submenus'=>[
 ['title'=>'Services','url'=>'/cms/services/index'],
+
 
     ]],
     ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
