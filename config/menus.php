@@ -31,6 +31,9 @@ $userMenu = [
         ['title' => 'General Settings', 'url' => 'settings/index', 'param' => ['id' => 'general']],
         ['title' => 'Email Settings', 'url' => 'settings/index', 'param' => ['id' => 'email']],
     ]],
+    ['title' => 'BestBuys', 'icon' => 'b', 'url' => '/'],
+
     ];
 
-return array_merge($userMenu, (new ConfigWrapper())->load('apiMenus'));
+// return array_merge($userMenu, (new ConfigWrapper())->load('apiMenus'));
+return $userMenu;

@@ -39,7 +39,7 @@ class Services extends \yii\db\ActiveRecord
             [['is_published', 'is_deleted', 'created_at', 'updated_at'], 'integer'],
             [['title', 'slug', 'imageURL'], 'string', 'max' => 255],
             [['slug'], 'unique'],
-            [['file'], 'file', 'extensions' => 'png,jpeg,jpg,svg', 'maxSize' => 1024 * 1024, 'skipOnEmpty' => false],
+            [['file'], 'file', 'extensions' => 'png,jpeg,jpg,svg', 'skipOnEmpty' => true],
         ];
     }
 

@@ -36,7 +36,7 @@ class Banners extends \yii\db\ActiveRecord
             [['title', 'description'], 'required'],
             [['is_published', 'is_deleted', 'created_at', 'updated_at'], 'integer'],
             [['title', 'description', 'imageURL'], 'string', 'max' => 255],
-            [['file'], 'file', 'extensions' => 'png,jpeg,jpg,svg', 'maxSize' => 1024 * 1024, 'skipOnEmpty' => false],
+            [['file'], 'file', 'extensions' => 'png,jpeg,jpg,svg', 'maxSize' => 1024 * 1024, 'skipOnEmpty' => true],
         ];
     }
 
