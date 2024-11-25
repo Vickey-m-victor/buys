@@ -1,18 +1,18 @@
 <?php
 
-use cms\models\Services;
+use cms\models\Products;
 use helpers\Html;
 use yii\helpers\Url;
 use helpers\grid\GridView;
-
+use yii\widgets\Pjax;
 /** @var yii\web\View $this */
-/** @var cms\models\searches\servicesSearch $searchModel */
+/** @var cms\models\searches\ProductsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Services';
+$this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="services-index row">
+<div class="products-index row">
     <div class="col-md-12">
       <div class="block block-rounded">
         <div class="block-header block-header-default">
@@ -23,16 +23,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'url' => Url::to(['create']),
             'appearence' => [
               'type' => 'text',
-              'text' => 'Create Services',
+              'text' => 'Create Products',
               'theme' => 'primary',
-              'visible' => Yii::$app->user->can('cms-services-create', true)
+              'visible' => Yii::$app->user->can('cms-products-create', true)
             ],
-            'modal' => ['title' => 'New Services']
+            'modal' => ['title' => 'New Products']
           ]) ?>
           </div> 
         </div>
         <div class="block-content">     
-    <div class="services-search my-3">
+    <?php Pjax::begin(); ?>
+    <div class="products-search my-3">
     <?= $this->render('_search', ['model' => $searchModel]); ?>
     </div>
 
@@ -44,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'description:ntext',
+            'technology',
             [
               'attribute' => 'imageURL',
               'format' => 'html', // Render as HTML
@@ -51,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   return Html::img($model->imageURL, ['alt' => $model->title, 'style' => 'width: 100px;']);
               },
           ],
-            // 'is_published',
+            //'is_published',
             //'is_deleted',
             //'created_at',
             //'updated_at',
@@ -62,27 +64,27 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style'=>'text-align: center;'],
                  'buttons' => [
                     'update' => function ($url, $model, $key) {
-                        return Html::customButton(['type' => 'modal', 'url' => Url::toRoute(['update', 'id' => $model->id]), 'modal' => ['title' => 'Update  Services'], 'appearence' => ['icon' => 'edit', 'theme' => 'info']]);
+                        return Html::customButton(['type' => 'modal', 'url' => Url::toRoute(['update', 'id' => $model->id]), 'modal' => ['title' => 'Update  Products'], 'appearence' => ['icon' => 'edit', 'theme' => 'info']]);
                     },
-
                     'trash' => function ($url, $model, $key) {
                         return $model->is_deleted !== 1 ?
-                            Html::customButton(['type' => 'link', 'url' => Url::toRoute(['trash', 'id' => $model->id]),  'appearence' => ['icon' => 'trash', 'theme' => 'danger', 'data' => ['message' => 'Do you want to delete this services?']]]) :
-                            Html::customButton(['type' => 'link', 'url' => Url::toRoute(['trash', 'id' => $model->id]),  'appearence' => ['icon' => 'undo', 'theme' => 'warning', 'data' => ['message' => 'Do you want to restore this services?']]]);
+                            Html::customButton(['type' => 'link', 'url' => Url::toRoute(['trash', 'id' => $model->id]),  'appearence' => ['icon' => 'trash', 'theme' => 'danger', 'data' => ['message' => 'Do you want to delete this products?']]]) :
+                            Html::customButton(['type' => 'link', 'url' => Url::toRoute(['trash', 'id' => $model->id]),  'appearence' => ['icon' => 'undo', 'theme' => 'warning', 'data' => ['message' => 'Do you want to restore this products?']]]);
                     },
                 ],
                 'visibleButtons' => [
-                    'update' => Yii::$app->user->can('cms-services-update',true),
+                    'update' => Yii::$app->user->can('cms-products-update',true),
                     'trash' => function ($model){
                          return $model->is_deleted !== 1 ? 
-                                Yii::$app->user->can('cms-services-delete',true) : 
-                                Yii::$app->user->can('cms-services-restore',true);
+                                Yii::$app->user->can('cms-products-delete',true) : 
+                                Yii::$app->user->can('cms-products-restore',true);
                     },
                 ],
             ],
         ],
     ]); ?>
 
+    <?php Pjax::end(); ?>
 
 </div>
 </div>

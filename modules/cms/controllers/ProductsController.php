@@ -3,28 +3,27 @@
 namespace cms\controllers;
 
 use Yii;
-use cms\models\Banners;
-use cms\models\searches\BannersSearch;
+use cms\models\Products;
+use cms\models\searches\ProductsSearch;
 use helpers\DashboardController;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
-
 /**
- * BannersController implements the CRUD actions for Banners model.
+ * ProductsController implements the CRUD actions for Products model.
  */
-class BannersController extends DashboardController
+class ProductsController extends DashboardController
 {
     public $permissions = [
-        'cms-banners-list'=>'View Banners List',
-        'cms-banners-create'=>'Add Banners',
-        'cms-banners-update'=>'Edit Banners',
-        'cms-banners-delete'=>'Delete Banners',
-        'cms-banners-restore'=>'Restore Banners',
+        'cms-products-list'=>'View Products List',
+        'cms-products-create'=>'Add Products',
+        'cms-products-update'=>'Edit Products',
+        'cms-products-delete'=>'Delete Products',
+        'cms-products-restore'=>'Restore Products',
         ];
     public function actionIndex()
     {
-        Yii::$app->user->can('cms-banners-list');
-        $searchModel = new BannersSearch();
+        Yii::$app->user->can('cms-products-list');
+        $searchModel = new ProductsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -34,8 +33,8 @@ class BannersController extends DashboardController
     }
     public function actionCreate()
     {
-        // Yii::$app->user->can('cms-banners-create');
-        $model = new Banners();
+        Yii::$app->user->can('cms-products-create');
+        $model = new Products();
         if ($this->request->isPost) {
             $uploadedFile = UploadedFile::getInstance($model, 'file');
 
@@ -44,22 +43,21 @@ class BannersController extends DashboardController
                     $this->saveFile($model, $uploadedFile);
                 }
 
-                Yii::$app->session->setFlash('success', 'Banner created successfully.');
+                Yii::$app->session->setFlash('success', 'product created successfully.');
                 return $this->redirect(['index', 'model' => $model]);
             }
 
-            Yii::$app->session->setFlash('error', 'Failed to create the banner.');
+            Yii::$app->session->setFlash('error', 'Failed to create the product.');
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
+        
     }
     public function actionUpdate($id)
     {
-        Yii::$app->user->can('cms-banners-update');
-        $model = $this->findModel($id);
-
+        Yii::$app->user->can('cms-products-update');
         $model = $this->findModel($id);
         if ($this->request->isPost) {
             $uploadedFile = UploadedFile::getInstance($model, 'file');
@@ -69,26 +67,28 @@ class BannersController extends DashboardController
                     $this->saveFile($model, $uploadedFile);
                 }
 
-                Yii::$app->session->setFlash('success', 'Banner updated successfully.');
+                Yii::$app->session->setFlash('success', 'Product updated successfully.');
                 return $this->redirect(['index', 'model' => $model]);
             }
 
-            Yii::$app->session->setFlash('error', 'Failed to update the banner.');
+            Yii::$app->session->setFlash('error', 'Failed to update the product.');
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
+
+       
     }
     public function actionTrash($id)
     {
         $model = $this->findModel($id);
         if ($model->is_deleted) {
-            Yii::$app->user->can('cms-banners-restore');
+            Yii::$app->user->can('cms-products-restore');
             $model->restore();
-            Yii::$app->session->setFlash('success', 'Banners has been restored');
+            Yii::$app->session->setFlash('success', 'Products has been restored');
         } else {
-            Yii::$app->user->can('cms-banners-delete');
+            Yii::$app->user->can('cms-products-delete');
             if (!empty($model->imageURL)) {
                 $filePath = Yii::getAlias('@webroot') . parse_url($model->imageURL, PHP_URL_PATH);
                 if (file_exists($filePath)) {
@@ -96,13 +96,13 @@ class BannersController extends DashboardController
                 }
             }
             $model->delete();
-            Yii::$app->session->setFlash('success', 'Banners has been deleted');
+            Yii::$app->session->setFlash('success', 'Products has been deleted');
         }
         return $this->redirect(['index']);
     }
     protected function findModel($id)
     {
-        if (($model = Banners::findOne(['id' => $id])) !== null) {
+        if (($model = Products::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
@@ -110,13 +110,13 @@ class BannersController extends DashboardController
     }
     protected function saveFile($model, $uploadedFile)
     {
-        $uploadDirectory = Yii::getAlias('@webroot/uploads/banners/');
+        $uploadDirectory = Yii::getAlias('@webroot/uploads/products/');
         if (!is_dir($uploadDirectory)) {
             mkdir($uploadDirectory, 0755, true);
         }
 
         // Define file name using the service ID
-        $fileName = 'banner_' . $model->id . '.' . $uploadedFile->extension;
+        $fileName = 'product_' . $model->id . '.' . $uploadedFile->extension;
         $filePath = $uploadDirectory . $fileName;
 
         // Delete old file if it exists
@@ -130,7 +130,7 @@ class BannersController extends DashboardController
         // Save the new file
         if ($uploadedFile->saveAs($filePath)) {
             $baseUrl = Yii::$app->request->hostInfo . Yii::$app->request->baseUrl;
-            $model->imageURL = $baseUrl . '/uploads/banners/' . $fileName;
+            $model->imageURL = $baseUrl . '/uploads/products/' . $fileName;
 
             // Save the model with the new imageURL
             $model->save(false);

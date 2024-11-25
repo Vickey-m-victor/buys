@@ -99,9 +99,7 @@ class m241123_133005_cms extends Migration
         $this->createTable('products', [
             'id' => $this->primaryKey(),
             'title' => $this->string(),
-            'slug' => $this->string()->unique(),
             'description' => $this->text(),
-            'link' => $this->string(),
             'technology' => $this->string(),
             'imageURL' => $this->string(),
             'is_published' => $this->boolean()->defaultValue(0),
