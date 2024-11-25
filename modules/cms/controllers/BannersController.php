@@ -124,7 +124,7 @@ class BannersController extends DashboardController
         // Save the new file
         if ($uploadedFile->saveAs($filePath)) {
             $baseUrl = Yii::$app->request->hostInfo . Yii::$app->request->baseUrl;
-            $model->imageURL = $baseUrl . '/uploads/banner/' . $fileName;
+            $model->imageURL = $baseUrl . '/uploads/banners/' . $fileName;
 
             // Save the model with the new imageURL
             $model->save(false);

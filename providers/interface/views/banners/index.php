@@ -44,7 +44,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'description',
-            'imageURL',
+            [
+              'attribute' => 'imageURL',
+              'format' => 'html', // Render as HTML
+              'value' => function ($model) {
+                  return Html::img($model->imageURL, ['alt' => $model->title, 'style' => 'width: 100px;']);
+              },
+          ],
             [
                 'class' => \helpers\grid\ActionColumn::className(),
                 'template' => '{update} {trash}',
