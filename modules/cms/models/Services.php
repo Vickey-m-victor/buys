@@ -9,7 +9,6 @@ use Yii;
  *
  * @property int $id
  * @property string $title
- * @property string|null $slug
  * @property string $description
  * @property string|null $imageURL
  * @property int|null $is_published
@@ -37,8 +36,7 @@ class Services extends \yii\db\ActiveRecord
             [['title', 'description'], 'required'],
             [['description'], 'string'],
             [['is_published', 'is_deleted', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'slug', 'imageURL'], 'string', 'max' => 255],
-            [['slug'], 'unique'],
+            [['title', 'imageURL'], 'string', 'max' => 255],
             [['file'], 'file', 'extensions' => 'png,jpeg,jpg,svg', 'skipOnEmpty' => true],
         ];
     }
@@ -51,10 +49,9 @@ class Services extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'slug' => 'Slug',
             'description' => 'Description',
             'imageURL' => 'Image File',
-            'is_published' => 'Is Published',
+            'is_published' => '',
             'is_deleted' => 'Is Deleted',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

@@ -15,17 +15,17 @@ use helpers\widgets\ActiveForm;
           <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-12">
-          <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col-md-12">
           <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
         </div>
         <div class="col-md-12">
           <?= $form->field($model, 'file')->fileInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-12">
-          <?= $form->field($model, 'is_published')->textInput() ?>
-        </div>
+        <div class="col-md-12">
+    <?= $form->field($model, 'is_published')->radioList(
+        [1 => 'Published', 0 => 'Unpublished'] // Radio options
+    ) ?>
+</div>
      
     </div>
     <div class="block-content block-content-full text-center">

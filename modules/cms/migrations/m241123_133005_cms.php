@@ -86,7 +86,7 @@ class m241123_133005_cms extends Migration
         $this->createTable('services', [
             'id' => $this->primaryKey(),
             'title' => $this->string(255)->notNull(),
-            'slug' => $this->string(255)->unique(),
+          
             'description' => $this->text()->notNull(),
             'imageURL' => $this->string(255),
             'is_published' => $this->boolean()->defaultValue(0),

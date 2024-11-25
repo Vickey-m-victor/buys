@@ -44,11 +44,11 @@ class BannersController extends DashboardController
                     $this->saveFile($model, $uploadedFile);
                 }
 
-                Yii::$app->session->setFlash('success', 'Service created successfully.');
+                Yii::$app->session->setFlash('success', 'Banner created successfully.');
                 return $this->redirect(['index', 'model' => $model]);
             }
 
-            Yii::$app->session->setFlash('error', 'Failed to create the service.');
+            Yii::$app->session->setFlash('error', 'Failed to create the banner.');
         }
 
         return $this->render('create', [
@@ -69,11 +69,11 @@ class BannersController extends DashboardController
                     $this->saveFile($model, $uploadedFile);
                 }
 
-                Yii::$app->session->setFlash('success', 'Service updated successfully.');
+                Yii::$app->session->setFlash('success', 'Banner updated successfully.');
                 return $this->redirect(['index', 'model' => $model]);
             }
 
-            Yii::$app->session->setFlash('error', 'Failed to update the service.');
+            Yii::$app->session->setFlash('error', 'Failed to update the banner.');
         }
 
         return $this->render('update', [

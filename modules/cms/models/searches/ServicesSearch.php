@@ -19,7 +19,7 @@ class ServicesSearch extends Services
     {
         return [
             [['id'], 'integer'],
-            [['title', 'slug', 'content'], 'safe'],
+            [['title', 'content'], 'safe'],
             ['globalSearch', 'safe']
         ];
     }
@@ -67,7 +67,7 @@ class ServicesSearch extends Services
         ]);
 
         $query->orFilterWhere(['like', 'title', $this->globalSearch])
-            ->orFilterWhere(['like', 'slug', $this->globalSearch])
+            
             ->orFilterWhere(['like', 'content', $this->globalSearch]);
         }else{
                 $query->andFilterWhere([
@@ -75,8 +75,7 @@ class ServicesSearch extends Services
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'slug', $this->slug])
-            ->andFilterWhere(['like', 'content', $this->content]);
+                      ->andFilterWhere(['like', 'content', $this->content]);
         }
         return $dataProvider;
     }
