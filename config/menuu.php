@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/wrapper.php';
 $userMenu = [
-    ['title' => 'Home', 'icon' => 'home', 'url' => '/'],
+    ['title' => 'Home', 'icon' => '', 'url' => '/'],
     ['title' => 'About', 'icon' => '', 'url' => 'site/abouts'],
     ['title' => 'Services', 'icon' => '', 'url' => 'site/services'],
     ['title' => 'Patners', 'icon' => '', 'url' => 'site/patners'],

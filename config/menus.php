@@ -15,13 +15,10 @@ $userMenu = [
         
     ],
     ['title' => 'Contact', 'icon' => 'phone', 'url' => '/dashboard/home/contact'],
-    ['title'=>'banners','icon'=>'car','url'=>'/cms/banners/index'],
-    ['title'=> 'Services','icon'=> 'phone','submenus'=>[
-['title'=>'Services','url'=>'/cms/services/index'],
-
-
-    ]],
-    ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
+    ['title'=>'banners','icon'=>'flag','url'=>'/cms/banners/index'],
+    ['title'=> 'Services','icon'=> 'computer','url'=>'/cms/services/index'],
+    ['title'=> 'Products','icon'=> 'signal','url'=> '/cms/products/index'],
+     ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
         ['title' => 'User Management', 'url' => 'profile/index'],
         ['title' => 'Manage Roles', 'url' => 'role/index'],
         ['title' => 'Manage Permissions', 'url' => 'permission/index'],
