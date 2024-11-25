@@ -20,6 +20,12 @@ use helpers\widgets\ActiveForm;
         <div class="col-md-12">
           <?= $form->field($model, 'file')->fileInput() ?>
         </div>
+        <div class="col-md-12">
+        <div class="col-md-12">
+    <?= $form->field($model, 'is_published')->radioList(
+        [1 => 'Published', 0 => 'Unpublished'] // Radio options
+    ) ?>
+</div>
     </div>
     <div class="block-content block-content-full text-center">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

@@ -19,9 +19,9 @@ $userMenu = [
     ['title'=> 'Services','icon'=> 'computer','url'=>'/cms/services/index'],
     ['title'=> 'Products','icon'=> 'signal','url'=> '/cms/products/index'],
      ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
-        ['title' => 'User Management', 'url' => 'profile/index'],
-        ['title' => 'Manage Roles', 'url' => 'role/index'],
-        ['title' => 'Manage Permissions', 'url' => 'permission/index'],
+        ['title' => 'User Management', 'url' => '/dashboard/profile/index'],
+        ['title' => 'Manage Roles', 'url' => '/dashboard/role/index'],
+        ['title' => 'Manage Permissions', 'url' => '/dashboard/permission/index'],
         ['title' => 'Manage Rules', 'url' => 'rule/index'],
     ]],
     ['title' => 'Settings', 'icon' => 'cog fa-spin', 'submenus' => [

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 
 // Fetch active banners
-$banners = Banners::find()->where(['is_deleted' => 0])->all(); 
+$banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all(); 
 ?>
 
 <div class="container-fluid position-relative p-0">

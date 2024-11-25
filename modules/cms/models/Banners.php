@@ -50,7 +50,7 @@ class Banners extends \yii\db\ActiveRecord
             'title' => 'Title',
             'description' => 'Description',
             'imageURL' => 'banner image',
-            'is_published' => 'Is Published',
+            'is_published' => '',
             'is_deleted' => 'Is Deleted',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
