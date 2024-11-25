@@ -52,8 +52,24 @@ class m241123_133005_cms extends Migration
             'url' => $this->string()->notNull(),
             'mission' => $this->string(),
             'vision' => $this->string(),
+            'is_published' => $this->boolean()->defaultValue(0),
+            'is_deleted' => $this->boolean()->defaultValue(0),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer()
+           
 
 
+        ]);
+        $this->insert('basic_info', [
+            'name' => 'Tech Solutions Ltd.',
+            'logoUrl' => 'https://example.com/images/logo.png',
+            'url' => 'https://www.techsolutions.com',
+            'mission' => 'To deliver cutting-edge tech solutions.',
+            'vision' => 'To be the leader in innovation and excellence.',
+            'is_published' => 1,
+            'is_deleted' => 0,   // Not deleted
+            'created_at' => time(),
+            'updated_at' => time(),
 
 
         ]);

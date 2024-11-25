@@ -7,6 +7,7 @@ use cms\models\ContactInfo;
 use cms\models\searches\ContactInfoSearch;
 use helpers\DashboardController;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * ContactInfoController implements the CRUD actions for ContactInfo model.
@@ -36,17 +37,20 @@ class ContactInfoController extends DashboardController
         Yii::$app->user->can('cms-contact-info-create');
         $model = new ContactInfo();
         if ($this->request->isPost) {
-            if ($model->load(Yii::$app->request->post())) {
-                if ($model->validate()) {
-                    if ($model->save()) {
-                        Yii::$app->session->setFlash('success', 'ContactInfo created successfully');
-                        return $this->redirect(['index']);
-                    }
+            $uploadedFile = UploadedFile::getInstance($model, 'file');
+
+            if ($model->load($this->request->post()) && $model->validate() && $model->save(false)) {
+                if ($uploadedFile) {
+                    $this->saveFile($model, $uploadedFile);
                 }
+
+                Yii::$app->session->setFlash('success', 'Banner created successfully.');
+                return $this->redirect(['index', 'model' => $model]);
             }
-        } else {
-            $model->loadDefaultValues();
+
+            Yii::$app->session->setFlash('error', 'Failed to create the banner.');
         }
+
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -55,20 +59,26 @@ class ContactInfoController extends DashboardController
     {
         Yii::$app->user->can('cms-contact-info-update');
         $model = $this->findModel($id);
-
+        $model = $this->findModel($id);
         if ($this->request->isPost) {
-            if ($model->load(Yii::$app->request->post())) {
-                if ($model->validate()) {
-                    if ($model->save()) {
-                        Yii::$app->session->setFlash('success', 'ContactInfo updated successfully');
-                        return $this->redirect(['/dashboard']);
-                    }
+            $uploadedFile = UploadedFile::getInstance($model, 'file');
+
+            if ($model->load($this->request->post()) && $model->validate() && $model->save(false)) {
+                if ($uploadedFile) {
+                    $this->saveFile($model, $uploadedFile);
                 }
+
+                Yii::$app->session->setFlash('success', 'Banner updated successfully.');
+                return $this->redirect(['index', 'model' => $model]);
             }
+
+            Yii::$app->session->setFlash('error', 'Failed to update the banner.');
         }
+
         return $this->render('update', [
             'model' => $model,
         ]);
+
     }
     public function actionTrash($id)
     {

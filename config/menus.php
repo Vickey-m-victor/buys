@@ -25,8 +25,9 @@ $userMenu = [
         ['title' => 'Manage Rules', 'url' => 'rule/index'],
     ]],
     ['title' => 'Settings', 'icon' => 'cog fa-spin', 'submenus' => [
-        ['title' => 'General Settings', 'url' => '/cms/contact-info/update?id=1'],
-        ['title' => 'Email Settings', 'url' => 'settings/index', 'param' => ['id' => 'email']],
+        ['title' => 'Contact Settings', 'url' => '/cms/contact-info/update?id=1'],
+        ['title' => 'Basic Settings', 'url' => '/cms/basic-info/update?id=1'],
+        ['title' => 'Socials', 'url'=> '/cms/socials/index']
     ]],
     ['title' => 'BestBuys', 'icon' => 'b', 'url' => '/'],
 

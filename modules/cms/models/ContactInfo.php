@@ -63,7 +63,7 @@ class ContactInfo extends \yii\db\ActiveRecord
             'address' => 'Address',
             'phone' => 'Phone',
             'email' => 'Email',
-            'is_published' => 'Is Published',
+            'is_published' => '',
             'is_deleted' => 'Is Deleted',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
