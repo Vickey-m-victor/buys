@@ -141,6 +141,7 @@ class m241123_133005_cms extends Migration
             'id' => $this->primaryKey(),
             'question' => $this->string()->notNull(),
             'answer' => $this->text()->notNull(),
+            'is_deleted' => $this->boolean()->defaultValue(0),
             'is_published' => $this->boolean()->defaultValue(1),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer()
