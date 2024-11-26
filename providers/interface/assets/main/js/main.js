@@ -124,3 +124,83 @@
     
 })(jQuery);
 
+function showMore(section) {
+    const content = document.getElementById(`${section}-content`);
+    const button = event.target;
+    
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        button.textContent = 'Show Less';
+        content.style.animation = 'fadeInUp 0.6s ease forwards';
+    } else {
+        content.style.display = 'none';
+        button.textContent = 'Learn More';
+    }
+}
+
+// Trigger animations when elements come into view
+document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    document.querySelectorAll('.animate-in').forEach((el) => observer.observe(el));
+});
+// Search functionality
+document.getElementById('faqSearch').addEventListener('input', function(e) {
+    const searchText = e.target.value.toLowerCase();
+    const items = document.querySelectorAll('.accordion-item');
+    
+    items.forEach(item => {
+        const question = item.querySelector('.accordion-button').textContent.toLowerCase();
+        const answer = item.querySelector('.accordion-body').textContent.toLowerCase();
+        
+        if (question.includes(searchText) || answer.includes(searchText)) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
+
+// Category filter
+function filterFAQs(category) {
+    const items = document.querySelectorAll('.accordion-item');
+    
+    items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+// Feedback buttons
+document.querySelectorAll('.feedback-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const feedbackSection = this.closest('.feedback-buttons');
+        const wasHelpful = this.classList.contains('btn-outline-success');
+        
+        // Toggle active state
+        feedbackSection.querySelectorAll('.feedback-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.classList.remove('btn-success', 'btn-danger');
+            btn.classList.add(btn.classList.contains('btn-outline-success') ? 'btn-outline-success' : 'btn-outline-danger');
+        });
+        
+        this.classList.add('active');
+        this.classList.remove(wasHelpful ? 'btn-outline-success' : 'btn-outline-danger');
+        this.classList.add(wasHelpful ? 'btn-success' : 'btn-danger');
+        
+        // Here you could add code to send feedback to your server
+        console.log(`Feedback recorded: ${wasHelpful ? 'Helpful' : 'Not Helpful'}`);
+    });
+});
+
+
