@@ -46,6 +46,7 @@ class BasicInfo extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'logoUrl' => 'Logo',
+            'file' => 'Logo',
             'is_published'=>'',
             'url' => 'website Url',
             'mission' => 'Mission',

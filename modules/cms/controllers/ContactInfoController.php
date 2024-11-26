@@ -55,7 +55,7 @@ class ContactInfoController extends DashboardController
             'model' => $model,
         ]);
     }
-    public function actionUpdate($id)
+    public function actionUpdate($id=1)
     {
         Yii::$app->user->can('cms-contact-info-update');
         $model = $this->findModel($id);
@@ -68,8 +68,8 @@ class ContactInfoController extends DashboardController
                     $this->saveFile($model, $uploadedFile);
                 }
 
-                Yii::$app->session->setFlash('success', 'Banner updated successfully.');
-                return $this->redirect(['index', 'model' => $model]);
+                Yii::$app->session->setFlash('success', 'contact updated successfully.');
+                return $this->redirect(['/dashboard']);
             }
 
             Yii::$app->session->setFlash('error', 'Failed to update the banner.');

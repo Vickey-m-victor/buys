@@ -97,6 +97,15 @@ class m241123_133005_cms extends Migration
 
 
         ]);
+        $this->insert('about',[
+            'title' => 'About Our Company',
+    'description' => 'We are a leading provider of innovative solutions, dedicated to improving lives and driving success through technology.',
+    'imageURL' => 'https://example.com/images/about-us.jpg',
+    'is_published' => 1, // Published
+    'is_deleted' => 0,   // Not deleted
+    'created_at' => time(),
+    'updated_at' => time(),
+        ]);
 
 
         $this->createTable('partners', [

@@ -1,23 +1,13 @@
 <?php
 require_once __DIR__ . '/wrapper.php';
 $userMenu = [
-    ['title' => 'Dashboard', 'icon' => 'home', 'submenus'=>[
-        
-        ['title'=>'Projects','url'=>'projects/index'],
-        ['title'=>'Team','url'=>'team/index'],
-        ['title'=>'Settings','url'=>'settings'],
-        ['title'=>'Basic Info','url'=>'basic-info/index'],
-        ['title'=>'Partners','url'=>'partners/index'],
-        ['title'=>'Socials','url'=>'socials/index'],
-        ['title'=>'About','url'=>'about/index'],
-        ['title'=>'Why Us','url'=>'whyus/index'],
-        ],
-        
-    ],
+    ['title' => 'Dashboard', 'icon' => 'home', 'url'=>''], 
+    ['title'=> 'About us', 'icon'=> 'user-pen','url'=> '/cms/about/update?id=1'],
     ['title' => 'Contact', 'icon' => 'phone', 'url' => '/dashboard/home/contact'],
     ['title'=>'banners','icon'=>'flag','url'=>'/cms/banners/index'],
     ['title'=> 'Services','icon'=> 'computer','url'=>'/cms/services/index'],
-    ['title'=> 'Partners','icon'=> 'signal','url'=> '/cms/products/index'],
+    ['title'=> 'Partners','icon'=> 'signal','url'=> '/cms/partners/index'],
+    ['title'=> 'Faqs','icon'=> 'question','url'=> '/cms/faqs/index'],
      ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
         ['title' => 'User Management', 'url' => '/dashboard/profile/index'],
         ['title' => 'Manage Roles', 'url' => '/dashboard/role/index'],

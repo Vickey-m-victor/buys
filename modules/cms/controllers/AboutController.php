@@ -3,28 +3,28 @@
 namespace cms\controllers;
 
 use Yii;
-use cms\models\BasicInfo;
-use cms\models\searches\BasicInfoSearch;
+use cms\models\About;
+use cms\models\searches\AboutSearch;
 use helpers\DashboardController;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 
 /**
- * BasicInfoController implements the CRUD actions for BasicInfo model.
+ * AboutController implements the CRUD actions for About model.
  */
-class BasicInfoController extends DashboardController
+class AboutController extends DashboardController
 {
     public $permissions = [
-        'cms-basic-info-list'=>'View BasicInfo List',
-        'cms-basic-info-create'=>'Add BasicInfo',
-        'cms-basic-info-update'=>'Edit BasicInfo',
-        'cms-basic-info-delete'=>'Delete BasicInfo',
-        'cms-basic-info-restore'=>'Restore BasicInfo',
+        'cms-about-list'=>'View About List',
+        'cms-about-create'=>'Add About',
+        'cms-about-update'=>'Edit About',
+        'cms-about-delete'=>'Delete About',
+        'cms-about-restore'=>'Restore About',
         ];
     public function actionIndex()
     {
-        Yii::$app->user->can('cms-basic-info-list');
-        $searchModel = new BasicInfoSearch();
+        Yii::$app->user->can('cms-about-list');
+        $searchModel = new AboutSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -34,27 +34,14 @@ class BasicInfoController extends DashboardController
     }
     public function actionCreate()
     {
-        Yii::$app->user->can('cms-basic-info-create');
-        $model = new BasicInfo();
-        if ($this->request->isPost) {
-            if ($model->load(Yii::$app->request->post())) {
-                if ($model->validate()) {
-                    if ($model->save()) {
-                        Yii::$app->session->setFlash('success', 'BasicInfo created successfully');
-                        return $this->redirect(['index']);
-                    }
-                }
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        Yii::$app->user->can('cms-about-create');
+        $model = new About();
+        return $this->redirect(['/update',['id' => 1]]);
+       
     }
     public function actionUpdate($id)
     {
-        Yii::$app->user->can('cms-basic-info-update');
+        Yii::$app->user->can('cms-about-update');
         $model = $this->findModel($id);
 
         if ($this->request->isPost) {
@@ -65,7 +52,7 @@ class BasicInfoController extends DashboardController
                     $this->saveFile($model, $uploadedFile);
                 }
 
-                Yii::$app->session->setFlash('success', 'basic info updated successfully.');
+                Yii::$app->session->setFlash('success', 'about us updated successfully.');
                 return $this->redirect(['/dashboard']);
             }
 
@@ -80,25 +67,19 @@ class BasicInfoController extends DashboardController
     {
         $model = $this->findModel($id);
         if ($model->is_deleted) {
-            Yii::$app->user->can('cms-basic-info-restore');
+            Yii::$app->user->can('cms-about-restore');
             $model->restore();
-            Yii::$app->session->setFlash('success', 'BasicInfo has been restored');
+            Yii::$app->session->setFlash('success', 'About has been restored');
         } else {
-            Yii::$app->user->can('cms-basic-info-delete');
-            if (!empty($model->imageURL)) {
-                $filePath = Yii::getAlias('@webroot') . parse_url($model->imageURL, PHP_URL_PATH);
-                if (file_exists($filePath)) {
-                    unlink($filePath);
-                }
-            }
+            Yii::$app->user->can('cms-about-delete');
             $model->delete();
-            Yii::$app->session->setFlash('success', 'BasicInfo has been deleted');
+            Yii::$app->session->setFlash('success', 'About has been deleted');
         }
         return $this->redirect(['index']);
     }
     protected function findModel($id)
     {
-        if (($model = BasicInfo::findOne(['id' => $id])) !== null) {
+        if (($model = About::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
@@ -106,13 +87,13 @@ class BasicInfoController extends DashboardController
     }
     protected function saveFile($model, $uploadedFile)
     {
-        $uploadDirectory = Yii::getAlias('@webroot/uploads/basicinfo/');
+        $uploadDirectory = Yii::getAlias('@webroot/uploads/about/');
         if (!is_dir($uploadDirectory)) {
             mkdir($uploadDirectory, 0755, true);
         }
 
         // Define file name using the service ID
-        $fileName = 'basicinfo_' . $model->id . '.' . $uploadedFile->extension;
+        $fileName = 'about_' . $model->id . '.' . $uploadedFile->extension;
         $filePath = $uploadDirectory . $fileName;
 
         // Delete old file if it exists
@@ -126,7 +107,7 @@ class BasicInfoController extends DashboardController
         // Save the new file
         if ($uploadedFile->saveAs($filePath)) {
             $baseUrl = Yii::$app->request->hostInfo . Yii::$app->request->baseUrl;
-            $model->logoUrl = $baseUrl . '/uploads/basicinfo/' . $fileName;
+            $model->imageURL = $baseUrl . '/uploads/about/' . $fileName;
 
             // Save the model with the new imageURL
             $model->save(false);

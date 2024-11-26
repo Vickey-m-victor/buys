@@ -4,42 +4,35 @@ use helpers\Html;
 use helpers\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
-/** @var cms\models\BasicInfo $model */
+/** @var cms\models\About $model */
 /** @var helpers\widgets\ActiveForm $form */
 ?>
 
-<div class="basic-info-form">
+<div class="about-form">
     <?php $form = ActiveForm::begin(['options' => ['data-pjax' => true, 'enctype' => 'multipart/form-data']]); ?>
     <div class="row">
         <div class="col-md-12">
-          <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+          <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-12">
-          <?= $form->field($model, 'file')->fileInput(['onchange' => 'previewImage(event)']) ?>
+          <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+        </div>
+        <div class="col-md-12">
+          <?= $form->field($model, 'file')->fileInput(['onchange' => 'previewAboutImage(event)']) ?>
         </div>
 
         <!-- Preview Section -->
         <div class="col-md-12 mb-3">
-            <?php if ($model->logoUrl): ?>
-                <label>Current Logo:</label>
+            <?php if ($model->imageURL): ?>
+                <label>Current Image:</label>
                 <div>
-                    <img id="logo-preview" src="<?= $model->logoUrl ?>" alt="Logo Preview" style="max-width: 150px; max-height: 150px;">
+                    <img id="about-image-preview" src="<?= $model->imageURL ?>" alt="About Image Preview" style="max-width: 150px; max-height: 150px;">
                 </div>
             <?php else: ?>
                 <div>
-                    <img id="logo-preview" src="#" alt="No Logo Selected" style="display: none; max-width: 150px; max-height: 150px;">
+                    <img id="about-image-preview" src="#" alt="No Image Selected" style="display: none; max-width: 150px; max-height: 150px;">
                 </div>
             <?php endif; ?>
-        </div>
-        
-        <div class="col-md-12">
-          <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col-md-12">
-          <?= $form->field($model, 'mission')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col-md-12">
-          <?= $form->field($model, 'vision')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
     <div class="block-content block-content-full text-center">
@@ -49,8 +42,8 @@ use helpers\widgets\ActiveForm;
 </div>
 
 <script>
-function previewImage(event) {
-    const preview = document.getElementById('logo-preview');
+function previewAboutImage(event) {
+    const preview = document.getElementById('about-image-preview');
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
