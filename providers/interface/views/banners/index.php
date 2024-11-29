@@ -9,7 +9,7 @@ use helpers\grid\GridView;
 /** @var cms\models\searches\BannersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Banners';
+$this->title = 'Banner';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="banners-index row">
@@ -19,11 +19,11 @@ $this->params['breadcrumbs'][] = $this->title;
           <h3 class="block-title"><?= Html::encode($this->title) ?> </h3>
           <div class="block-options">
           <?=  Html::customButton([
-            'type' => 'modal',
+            'type' => 'link',
             'url' => Url::to(['create']),
             'appearence' => [
               'type' => 'text',
-              'text' => 'Create Banners',
+              'text' => 'Create Banner',
               'theme' => 'primary',
               'visible' => Yii::$app->user->can('cms-banners-create', true)
             ],

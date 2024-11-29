@@ -19,11 +19,11 @@ $this->params['breadcrumbs'][] = $this->title;
           <h3 class="block-title"><?= Html::encode($this->title) ?> </h3>
           <div class="block-options">
           <?=  Html::customButton([
-            'type' => 'modal',
+            'type' => 'link',
             'url' => Url::to(['create']),
             'appearence' => [
               'type' => 'text',
-              'text' => 'Create Services',
+              'text' => 'Create Service',
               'theme' => 'primary',
               'visible' => Yii::$app->user->can('cms-services-create', true)
             ],
