@@ -35,7 +35,7 @@ use yii\helpers\Url;
                 </button>
                 <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0 border-0" aria-labelledby="page-header-user-dropdown">
                     <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=Url::to(['/iam/logout'])?>">
+                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?=Url::to(['/dashboard/iam/logout'])?>">
                             <span class="fs-sm fw-medium">Log Out</span>
                         </a>
                     </div>
