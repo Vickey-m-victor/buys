@@ -40,8 +40,11 @@ class SiteController extends \helpers\WebController
     {
         return $this->render('services');
     }
-    public function actionBanners(){
-        return $this->render('banners');
+    public function actionAbouts(){
+        return $this->render('abouts');
+    }
+    public function actionContact(){
+        return $this->render('contact');
     }
 
     public function actionDocs($mod = 'dashboard')

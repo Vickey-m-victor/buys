@@ -18,26 +18,32 @@ $services = Services::find()->where(['is_deleted' => 0, 'is_published' => 1])->a
                 </div>
             </div>
         </div>
-<!-- Service Start -->
-<div class="container-fluid py-5 wow " data-wow-delay="0.1s">
+
+
+
+        <div class="container-fluid py-5">
     <div class="container py-5">
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <h5 class="fw-bold text-primary text-uppercase">Our Services</h5>
             <h1 class="mb-0">Custom IT Solutions for Your Successful Business</h1>
         </div>
-        <div class="row g-5">
+        <div class="row g-4">
             <?php if (!empty($services)): ?>
                 <?php foreach ($services as $index => $service): ?>
-                    <div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="<?= 0.3 + ($index * 0.3) ?>s">
-                        <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
-                            <div class="">
-                                <img src="<?= Html::encode($service->imageURL) ?>" alt="Service Image" style="width: 60px; height: 60px; border-radius: 50px;">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item bg-light rounded-lg shadow-hover p-4 h-100 transition-all" style="background-color: #f0f8ff;">
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="service-icon mb-4">
+                                    <img src="<?= Html::encode($service->imageURL) ?>" alt="Service Image" 
+                                         class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+                                </div>
+                                <h4 class="mb-3 text-center"><?= Html::encode($service->title) ?></h4>
+                                <p class="text-center mb-4"><?= Html::encode($service->description) ?></p>
+                                <a class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" 
+                                   style="width: 45px; height: 45px;" href="">
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
                             </div>
-                            <h4 class="mb-3"><?= Html::encode($service->title) ?></h4>
-                            <p class="m-0"><?= Html::encode($service->description) ?></p>
-                            <a class="btn btn-lg btn-primary rounded" href="">
-                                <i class="bi bi-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -50,84 +56,90 @@ $services = Services::find()->where(['is_deleted' => 0, 'is_published' => 1])->a
     </div>
 </div>
 
-    <!-- Testimonial Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-4 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Testimonial</h5>
-                <h1 class="mb-0">What Our Clients Say About Our Digital Services</h1>
+
+<section class="partners-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title mb-4">Our Trusted Partners</h2>
+            <p class="text-muted">Working with industry leaders to deliver excellence</p>
+        </div>
+    </div>
+
+    <div class="logos-slider pause-on-hover">
+        <div class="gradient-overlay-left"></div>
+        <div class="gradient-overlay-right"></div>
+        
+        <div class="logos-slide">
+            <!-- Microsoft -->
+            <div class="logo-item">
+                <i class="fab fa-microsoft fa-3x text-primary"></i>
+                <div class="partner-info">
+                    <h6 class="mb-1">Microsoft</h6>
+                    <small class="text-muted">Cloud Solutions Partner</small>
+                </div>
             </div>
-            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s">
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-1.jpg" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
+
+            <!-- GitHub -->
+            <div class="logo-item">
+                <i class="fab fa-github fa-3x"></i>
+                <div class="partner-info">
+                    <h6 class="mb-1">GitHub</h6>
+                    <small class="text-muted">Development Platform Partner</small>
                 </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-2.jpg" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
+            </div>
+
+            <!-- HP -->
+            <div class="logo-item">
+                <i class="fas fa-laptop fa-3x text-primary"></i>
+                <div class="partner-info">
+                    <h6 class="mb-1">HP</h6>
+                    <small class="text-muted">Hardware Solutions Partner</small>
                 </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-3.jpg" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
+            </div>
+
+            <!-- AWS -->
+            <div class="logo-item">
+                <i class="fab fa-aws fa-3x text-warning"></i>
+                <div class="partner-info">
+                    <h6 class="mb-1">Amazon AWS</h6>
+                    <small class="text-muted">Cloud Infrastructure Partner</small>
                 </div>
-                <div class="testimonial-item bg-light my-4">
-                    <div class="d-flex align-items-center border-bottom pt-5 pb-4 px-5">
-                        <img class="img-fluid rounded" src="img/testimonial-4.jpg" style="width: 60px; height: 60px;" >
-                        <div class="ps-4">
-                            <h4 class="text-primary mb-1">Client Name</h4>
-                            <small class="text-uppercase">Profession</small>
-                        </div>
-                    </div>
-                    <div class="pt-4 pb-5 px-5">
-                        Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
-                    </div>
+            </div>
+
+            <!-- Google -->
+            <div class="logo-item">
+                <i class="fab fa-google fa-3x text-danger"></i>
+                <div class="partner-info">
+                    <h6 class="mb-1">Google</h6>
+                    <small class="text-muted">Technology Partner</small>
+                </div>
+            </div>
+
+            <!-- Intel -->
+            <div class="logo-item">
+                <i class="fas fa-microchip fa-3x text-primary"></i>
+                <div class="partner-info">
+                    <h6 class="mb-1">Intel</h6>
+                    <small class="text-muted">Hardware Technology Partner</small>
+                </div>
+            </div>
+
+            <!-- Duplicate set for seamless loop -->
+            <div class="logo-item">
+                <i class="fab fa-microsoft fa-3x text-primary"></i>
+                <div class="partner-info">
+                    <h6 class="mb-1">Microsoft</h6>
+                    <small class="text-muted">Cloud Solutions Partner</small>
+                </div>
+            </div>
+
+            <div class="logo-item">
+                <i class="fab fa-github fa-3x"></i>
+                <div class="partner-info">
+                    <h6 class="mb-1">GitHub</h6>
+                    <small class="text-muted">Development Platform Partner</small>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Testimonial End -->
-
-
-    <!-- Vendor Start -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5 mb-5">
-            <div class="bg-white">
-                <div class="owl-carousel vendor-carousel">
-                    <img src="img/vendor-1.jpg" alt="">
-                    <img src="img/vendor-2.jpg" alt="">
-                    <img src="img/vendor-3.jpg" alt="">
-                    <img src="img/vendor-4.jpg" alt="">
-                    <img src="img/vendor-5.jpg" alt="">
-                    <img src="img/vendor-6.jpg" alt="">
-                    <img src="img/vendor-7.jpg" alt="">
-                    <img src="img/vendor-8.jpg" alt="">
-                    <img src="img/vendor-9.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Vendor End -->
+</section>  

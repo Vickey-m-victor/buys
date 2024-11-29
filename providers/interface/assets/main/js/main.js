@@ -33,25 +33,53 @@
     
     $(window).on("load resize", function() {
         if (this.matchMedia("(min-width: 992px)").matches) {
+            // Dropdown on hover for larger screens
             $dropdown.hover(
-            function() {
-                const $this = $(this);
-                $this.addClass(showClass);
-                $this.find($dropdownToggle).attr("aria-expanded", "true");
-                $this.find($dropdownMenu).addClass(showClass);
-            },
-            function() {
-                const $this = $(this);
-                $this.removeClass(showClass);
-                $this.find($dropdownToggle).attr("aria-expanded", "false");
-                $this.find($dropdownMenu).removeClass(showClass);
-            }
+                function() {
+                    const $this = $(this);
+                    $this.addClass(showClass);
+                    $this.find($dropdownToggle).attr("aria-expanded", "true");
+                    $this.find($dropdownMenu).addClass(showClass);
+                },
+                function() {
+                    const $this = $(this);
+                    $this.removeClass(showClass);
+                    $this.find($dropdownToggle).attr("aria-expanded", "false");
+                    $this.find($dropdownMenu).removeClass(showClass);
+                }
             );
         } else {
+            // Dropdown on click for smaller screens
             $dropdown.off("mouseenter mouseleave");
+            $dropdownToggle.off("click").on("click", function(e) {
+                const $parent = $(this).parent();
+                if ($parent.hasClass(showClass)) {
+                    $parent.removeClass(showClass);
+                    $(this).attr("aria-expanded", "false");
+                    $parent.find($dropdownMenu).removeClass(showClass);
+                } else {
+                    // Close any other open dropdowns
+                    $dropdown.removeClass(showClass);
+                    $dropdown.find($dropdownToggle).attr("aria-expanded", "false");
+                    $dropdownMenu.removeClass(showClass);
+    
+                    // Open the clicked dropdown
+                    $parent.addClass(showClass);
+                    $(this).attr("aria-expanded", "true");
+                    $parent.find($dropdownMenu).addClass(showClass);
+                }
+                e.stopPropagation(); // Prevent closing dropdown on click inside
+            });
         }
     });
-
+    
+    // Close dropdowns when clicking outside
+    $(document).on("click", function() {
+        $dropdown.removeClass(showClass);
+        $dropdownToggle.attr("aria-expanded", "false");
+        $dropdownMenu.removeClass(showClass);
+    });
+    
 
     // Facts counter
     $('[data-toggle="counter-up"]').counterUp({

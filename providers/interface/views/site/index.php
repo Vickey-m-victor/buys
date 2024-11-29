@@ -193,9 +193,9 @@ $contactInfo = ContactInfo::findOne(1);
 
     <section class="partners-section">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="section-title mb-4">Our Trusted Partners</h2>
-            <p class="text-muted">Working with industry leaders to deliver excellence</p>
+        <div class="mb-5">
+            <h2 class="text-center section-title mb-4">Our Trusted Partners</h2>
+            <p class=" text-center text-muted">Working with industry leaders to deliver excellence</p>
         </div>
     </div>
 
