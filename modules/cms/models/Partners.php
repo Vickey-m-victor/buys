@@ -49,7 +49,7 @@ class Partners extends \yii\db\ActiveRecord
             'title' => 'Title',
             'file' => 'partner Image',
             'imageURL' => 'partner Image',
-            'is_published' => '',
+            'is_published' => 'publish',
             'is_deleted' => 'Is Deleted',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

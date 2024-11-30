@@ -52,6 +52,7 @@ class m241123_133005_cms extends Migration
             'url' => $this->string()->notNull(),
             'mission' => $this->string(),
             'vision' => $this->string(),
+            'core_values'=> $this->string(), 
             'is_published' => $this->boolean()->defaultValue(0),
             'is_deleted' => $this->boolean()->defaultValue(0),
             'created_at' => $this->integer(),

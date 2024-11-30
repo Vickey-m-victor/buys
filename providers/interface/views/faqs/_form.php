@@ -9,7 +9,7 @@ use helpers\widgets\ActiveForm;
 ?>
 
 <div class="faqs-form card shadow-sm mb-3">
-    <div class="card-header bg-primary text-white">
+    <div class="card-header bg-secondary text-white">
         <h5 class="mb-0">FAQ Details</h5>
     </div>
     <div class="card-body p-4">
@@ -45,7 +45,7 @@ use helpers\widgets\ActiveForm;
                 <?= $form->field($model, 'is_published')->checkbox([
                     'label' => 'Publish',
                     'class' => 'form-check-input',
-                ])->label(false); ?>
+                ])->label(true); ?>
             </div>
         </div>
 

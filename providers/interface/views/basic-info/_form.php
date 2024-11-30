@@ -9,7 +9,7 @@ use helpers\widgets\ActiveForm;
 ?>
 
 <div class="basic-info-form card shadow-sm mb-3">
-    <div class="card-header bg-primary text-white">
+    <div class="card-header bg-secondary text-white">
         <h5 class="mb-0">Basic Information</h5>
     </div>
     <div class="card-body p-4">
@@ -80,6 +80,15 @@ use helpers\widgets\ActiveForm;
                         'class' => 'form-control form-control-sm',
                     ])
                     ->label('Vision', ['class' => 'form-label']); ?>
+            </div>
+            <div class="col-md-12">
+                <?= $form->field($model, 'core_values')
+                    ->textInput([
+                        'maxlength' => true, 
+                        'placeholder' => 'Enter Core Values', 
+                        'class' => 'form-control form-control-sm',
+                    ])
+                    ->label('Core Values ', ['class' => 'form-label']); ?>
             </div>
         </div>
 

@@ -5,51 +5,50 @@ use helpers\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var cms\models\Services $model */
-/** @var helpers\widgets\ActiveForm $form */
+
 ?>
 
-<div class="services-form card shadow-sm mb-3">
-    <div class="card-header bg-primary text-white">
+<div class="services-form card shadow-sm">
+    <div class="card-header bg-secondary text-white">
         <h5 class="mb-0">Service Details</h5>
     </div>
-    <div class="card-body p-4">
+    <div class="card-body">
         <?php $form = ActiveForm::begin([
-            'options' => ['data-pjax' => false, 'enctype' => 'multipart/form-data'],
+            'options' => ['enctype' => 'multipart/form-data', 'id' => 'service-form'],
         ]); ?>
-        
-        <div class="row g-2">
-            <!-- Title Field -->
-            <div class="col-md-12 mb-3">
+
+        <div class="row g-3">
+            <div class="col-md-6">
                 <?= $form->field($model, 'title')
-                    ->textInput(['maxlength' => true, 'placeholder' => 'Enter Service Title', 'class' => 'form-control form-control-sm'])
+                    ->textInput(['maxlength' => true, 'placeholder' => 'Service Title'])
                     ->label('Title', ['class' => 'form-label']); ?>
             </div>
-
-            <!-- Description Field -->
-            <div class="col-md-12 mb-3">
-                <?= $form->field($model, 'description')
-                    ->textarea(['rows' => 3, 'placeholder' => 'Provide a brief description', 'class' => 'form-control form-control-sm'])
-                    ->label('Description', ['class' => 'form-label']); ?>
-            </div>
-
-            <!-- File Upload -->
-            <div class="col-md-12 mb-3">
+          
+            <div class="col-md-6">
                 <?= $form->field($model, 'file')
-                    ->fileInput(['maxlength' => true, 'id' => 'service-file-input', 'class' => 'form-control form-control-sm'])
+                    ->fileInput(['id' => 'service-file-input'])
                     ->label('Upload Service Image', ['class' => 'form-label']); ?>
-                <img id="service-preview" src="#" alt="Preview" class="img-thumbnail mt-2" style="max-width: 150px; display: none;">
+                <img id="service-preview" 
+                     src="<?= $model->imageURL ?: '#' ?>" 
+                     alt="Preview" 
+                     class="img-thumbnail mt-2" 
+                     style="max-width: 150px; <?= $model->imageURL ? '' : 'display: none;' ?>">
             </div>
-
-            <!-- Publish Status (Checkbox) -->
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6">
+                <?= $form->field($model, 'description')
+                    ->textarea(['rows' => 2, 'maxlength' => true, 'placeholder' => 'Brief Description'])
+                    ->label('Description', ['class' => 'form-label']); ?>
+                     <div class="col-md-6">
                 <?= $form->field($model, 'is_published')->checkbox([
                     'label' => 'Publish',
-                    'class' => 'form-check-input'
+                    'class' => 'form-check-input',
                 ])->label(true); ?>
             </div>
+            </div>
+           
         </div>
 
-        <div class="text-center">
+        <div class="text-center mt-4">
             <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-sm']) ?>
         </div>
 
