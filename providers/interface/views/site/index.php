@@ -18,7 +18,7 @@ $services = Services::find()
     ->all();
 $basicInfo = BasicInfo::findOne(1);
 $contactInfo = ContactInfo::findOne(1);
-
+$patners = Partners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
 ?>
 
 <div class="container-fluid position-relative p-0">
@@ -191,11 +191,11 @@ $contactInfo = ContactInfo::findOne(1);
     </div>
 </div>
 
-    <section class="partners-section">
+<section class="partners-section">
     <div class="container">
         <div class="mb-5">
             <h2 class="text-center section-title mb-4">Our Trusted Partners</h2>
-            <p class=" text-center text-muted">Working with industry leaders to deliver excellence</p>
+            <p class="text-center text-muted">Working with industry leaders to deliver excellence</p>
         </div>
     </div>
 
@@ -204,79 +204,20 @@ $contactInfo = ContactInfo::findOne(1);
         <div class="gradient-overlay-right"></div>
         
         <div class="logos-slide">
-            <!-- Microsoft -->
-            <div class="logo-item">
-                <i class="fab fa-microsoft fa-3x text-primary"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Microsoft</h6>
-                    <small class="text-muted">Cloud Solutions Partner</small>
+            <?php foreach ($patners as $partner): ?>
+                <div class="logo-item">
+                    <img src="<?= Html::encode($partner->imageURL) ?>" alt="<?= Html::encode($partner->title) ?>" class="partner-logo">
+                    <div class="partner-info">
+                        <h6 class="mb-1"><?= Html::encode($partner->title) ?></h6>
+                        <!-- Add a subtitle or description here if available -->
+                        <small class="text-muted">Trusted Partner</small>
+                    </div>
                 </div>
-            </div>
-
-            <!-- GitHub -->
-            <div class="logo-item">
-                <i class="fab fa-github fa-3x"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">GitHub</h6>
-                    <small class="text-muted">Development Platform Partner</small>
-                </div>
-            </div>
-
-            <!-- HP -->
-            <div class="logo-item">
-                <i class="fas fa-laptop fa-3x text-primary"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">HP</h6>
-                    <small class="text-muted">Hardware Solutions Partner</small>
-                </div>
-            </div>
-
-            <!-- AWS -->
-            <div class="logo-item">
-                <i class="fab fa-aws fa-3x text-warning"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Amazon AWS</h6>
-                    <small class="text-muted">Cloud Infrastructure Partner</small>
-                </div>
-            </div>
-
-            <!-- Google -->
-            <div class="logo-item">
-                <i class="fab fa-google fa-3x text-danger"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Google</h6>
-                    <small class="text-muted">Technology Partner</small>
-                </div>
-            </div>
-
-            <!-- Intel -->
-            <div class="logo-item">
-                <i class="fas fa-microchip fa-3x text-primary"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Intel</h6>
-                    <small class="text-muted">Hardware Technology Partner</small>
-                </div>
-            </div>
-
-            <!-- Duplicate set for seamless loop -->
-            <div class="logo-item">
-                <i class="fab fa-microsoft fa-3x text-primary"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Microsoft</h6>
-                    <small class="text-muted">Cloud Solutions Partner</small>
-                </div>
-            </div>
-
-            <div class="logo-item">
-                <i class="fab fa-github fa-3x"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">GitHub</h6>
-                    <small class="text-muted">Development Platform Partner</small>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
-</section>  
+</section>
+
 
 <script>
     // PHP to JavaScript: Convert PHP services array to JS

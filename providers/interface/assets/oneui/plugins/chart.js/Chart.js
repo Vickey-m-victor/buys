@@ -7663,7 +7663,7 @@ function _getEdge(a, b, prop, fn) {
 
 function _createBoundaryLine(boundary, line) {
     let points = [];
-    let _loop = false;
+    let _loop = true;
     if (isArray(boundary)) {
         _loop = true;
         points = boundary;

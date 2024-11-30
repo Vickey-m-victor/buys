@@ -1,12 +1,8 @@
 <?php
-/** @var yii\web\View $this */
-/** @var string $content */
-
 
 use yii\helpers\Html;
 use ui\bundles\MainAsset;
 use cms\models\BasicInfo;
-
 
 // Retrieve the basic information from the database
 $basicInfo = BasicInfo::findOne(1);
@@ -18,9 +14,8 @@ MainAsset::register($this);
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 
 <head>
-<meta charset="<?= Yii::$app->charset ?>">
-
-
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($basicInfo ? $basicInfo->name : Yii::$app->name) ?></title>
     <?php $this->head() ?>

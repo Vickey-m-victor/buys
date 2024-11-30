@@ -2601,7 +2601,7 @@ function getSegment(segment, points, bounds) {
         const cur = points[end % count];
         if (cur.skip || cur.stop) {
             if (!prev.skip) {
-                loop = false;
+                loop = true;
                 result.push({
                     start: start % count,
                     end: (end - 1) % count,

@@ -1,25 +1,44 @@
-<?php 
+<?php
 use cms\models\Services;
+use cms\models\Partners;
+use cms\models\Banners;
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-
 $services = Services::find()->where(['is_deleted' => 0, 'is_published' => 1])->all();
-
+$patners = Partners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
+$banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
 ?>
 
-<div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
-            <div class="row py-5">
-                <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                    <h1 class="display-4 text-white animated zoomIn">Services</h1>
-                    <a href="" class="h5 text-white">Home</a>
-                    <i class="far fa-circle text-white px-2"></i>
-                    <a href="" class="h5 text-white">Services</a>
-                </div>
+<?php if (!empty($banners)): ?>
+    <?php 
+    // Assuming the first active banner is used for the background image
+    $banner = $banners[0]; 
+    ?>
+    <div class="container-fluid bg-primary py-5"
+    style="background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url(<?= Html::encode($banner->imageURL); ?>) center center no-repeat; background-size: cover; margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Services</h1>
+                <a href="" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h5 text-white">Services</a>
             </div>
         </div>
-
-
+    </div>
+<?php else: ?>
+    <div class="container-fluid bg-primary py-5"
+    style="background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url(../img/carousel-1.jpg) center center no-repeat; background-size: cover; margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Services</h1>
+                <a href="" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h5 text-white">Services</a>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
         <div class="container-fluid py-5">
     <div class="container py-5">
@@ -56,12 +75,11 @@ $services = Services::find()->where(['is_deleted' => 0, 'is_published' => 1])->a
     </div>
 </div>
 
-
 <section class="partners-section">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="section-title mb-4">Our Trusted Partners</h2>
-            <p class="text-muted">Working with industry leaders to deliver excellence</p>
+        <div class="mb-5">
+            <h2 class="text-center section-title mb-4">Our Trusted Partners</h2>
+            <p class="text-center text-muted">Working with industry leaders to deliver excellence</p>
         </div>
     </div>
 
@@ -70,76 +88,16 @@ $services = Services::find()->where(['is_deleted' => 0, 'is_published' => 1])->a
         <div class="gradient-overlay-right"></div>
         
         <div class="logos-slide">
-            <!-- Microsoft -->
-            <div class="logo-item">
-                <i class="fab fa-microsoft fa-3x text-primary"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Microsoft</h6>
-                    <small class="text-muted">Cloud Solutions Partner</small>
+            <?php foreach ($patners as $partner): ?>
+                <div class="logo-item">
+                    <img src="<?= Html::encode($partner->imageURL) ?>" alt="<?= Html::encode($partner->title) ?>" class="partner-logo">
+                    <div class="partner-info">
+                        <h6 class="mb-1"><?= Html::encode($partner->title) ?></h6>
+                        <!-- Add a subtitle or description here if available -->
+                        <small class="text-muted">Trusted Partner</small>
+                    </div>
                 </div>
-            </div>
-
-            <!-- GitHub -->
-            <div class="logo-item">
-                <i class="fab fa-github fa-3x"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">GitHub</h6>
-                    <small class="text-muted">Development Platform Partner</small>
-                </div>
-            </div>
-
-            <!-- HP -->
-            <div class="logo-item">
-                <i class="fas fa-laptop fa-3x text-primary"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">HP</h6>
-                    <small class="text-muted">Hardware Solutions Partner</small>
-                </div>
-            </div>
-
-            <!-- AWS -->
-            <div class="logo-item">
-                <i class="fab fa-aws fa-3x text-warning"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Amazon AWS</h6>
-                    <small class="text-muted">Cloud Infrastructure Partner</small>
-                </div>
-            </div>
-
-            <!-- Google -->
-            <div class="logo-item">
-                <i class="fab fa-google fa-3x text-danger"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Google</h6>
-                    <small class="text-muted">Technology Partner</small>
-                </div>
-            </div>
-
-            <!-- Intel -->
-            <div class="logo-item">
-                <i class="fas fa-microchip fa-3x text-primary"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Intel</h6>
-                    <small class="text-muted">Hardware Technology Partner</small>
-                </div>
-            </div>
-
-            <!-- Duplicate set for seamless loop -->
-            <div class="logo-item">
-                <i class="fab fa-microsoft fa-3x text-primary"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">Microsoft</h6>
-                    <small class="text-muted">Cloud Solutions Partner</small>
-                </div>
-            </div>
-
-            <div class="logo-item">
-                <i class="fab fa-github fa-3x"></i>
-                <div class="partner-info">
-                    <h6 class="mb-1">GitHub</h6>
-                    <small class="text-muted">Development Platform Partner</small>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
-</section>  
+</section>
