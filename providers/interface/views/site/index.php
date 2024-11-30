@@ -191,7 +191,7 @@ $patners = Partners::find()->where(['is_published' => 1,'is_deleted'=>0])->all()
     </div>
 </div>
 
-\<section class="partners-section">
+<section class="partners-section">
     <div class="container">
         <div class="mb-5">
             <h2 class="text-center section-title mb-4">Our Trusted Partners</h2>

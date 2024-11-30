@@ -4,6 +4,7 @@ namespace main\controllers;
 
 use Yii;
 use yii\web\Response;
+use mail\models\static\contactForm;
 
 class SiteController extends \helpers\WebController
 {
@@ -43,9 +44,31 @@ class SiteController extends \helpers\WebController
     public function actionAbouts(){
         return $this->render('abouts');
     }
-    public function actionContact(){
-        return $this->render('contact');
+    public function actionContact()
+{
+    $model = new ContactForm();  // Create the ContactForm model instance
+
+    // Handle the form submission
+    if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        // If form is valid, send the email
+        if ($model->contact(Yii::$app->params['adminEmail'])) {
+            // Set a success flash message if the email was sent
+            Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+        } else {
+            // Set an error flash message if email was not sent
+            Yii::$app->session->setFlash('error', 'There was an error while sending your message. Please try again later.');
+        }
+
+        // Refresh the page to show the flash message
+        return $this->refresh();
     }
+
+    // If the form was not submitted or is invalid, render the contact page with the model
+    return $this->render('contact', [
+        'model' => $model,
+    ]);
+}
+
 
     public function actionDocs($mod = 'dashboard')
     {
