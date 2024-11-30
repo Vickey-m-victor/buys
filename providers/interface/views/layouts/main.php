@@ -1,73 +1,77 @@
 <?php
-
+use cms\models\ContactInfo;
 use yii\helpers\Html;
 use ui\bundles\MainAsset;
 use cms\models\BasicInfo;
-
 // Retrieve the basic information from the database
 $basicInfo = BasicInfo::findOne(1);
-
+$contactInfo = ContactInfo::findOne(1);
 MainAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($basicInfo ? $basicInfo->name : Yii::$app->name) ?></title>
+    
+ 
+    
     <?php $this->head() ?>
 </head>
-
 <body>
-    <?php $this->beginBody() ?>
-    <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-            <!-- Logo -->
-            <a href="<?= $basicInfo ? Html::encode($basicInfo->url) : '#' ?>" class="navbar-brand p-0">
-                <?php if ($basicInfo && $basicInfo->logoUrl): ?>
-                    <img src="<?= Html::encode($basicInfo->logoUrl) ?>" alt="<?= Html::encode($basicInfo->name) ?>" class="logo-img" style="max-height: 50px;">
-                <?php else: ?>
-                    <h1 class="m-0"><i class="fa-solid fa-money-check-dollar"></i><?= Yii::$app->name ?></h1>
-                <?php endif; ?>
-            </a>
+<?php $this->beginBody() ?>
+<div class="container-fluid position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+        <!-- Logo -->
+        <a href="<?= $basicInfo ? Html::encode($basicInfo->url) : '#' ?>" class="navbar-brand p-0">
+            <?php if ($basicInfo && $basicInfo->logoUrl): ?>
+                <img src="<?= Html::encode($basicInfo->logoUrl) ?>" alt="<?= Html::encode($basicInfo->name) ?>" class="logo-img" style="max-height: 50px;">
+            <?php else: ?>
+                <h1 class="m-0"><i class="fa-solid fa-money-check-dollar"></i><?= Yii::$app->name ?></h1>
+            <?php endif; ?>
+        </a>
+        <!-- Navbar Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <!-- Collapsible Navbar Menu -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <?= \helpers\Menuu::load() ?>
+        </div>
+    </nav>
+</div>
 
-            <!-- Navbar Toggler -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button>
+<!-- Main Content -->
+<?= $content ?>
 
-            <!-- Collapsible Navbar Menu -->
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <?= \helpers\Menuu::load() ?>
-            </div>
-        </nav>
-    </div>
-
-    <!-- Main Content -->
-    <?= $content ?>
-
-    <!-- Footer Section -->
-    <div class="container-fluid text-white" style="background: #061429;">
-        <div class="container text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 col-md-6">
-                    <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
-                        <p class="mb-0">&copy; <a class="text-white border-bottom" href="#"><?= Html::encode($basicInfo ? $basicInfo->name : Yii::$app->name) ?></a>. All Rights Reserved.
+<!-- Footer Section -->
+<div class="container-fluid text-white" style="background: #061429;">
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-6">
+                <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
+                    <p class="mb-0">&copy; <a class="text-white border-bottom" href="#"><?= Html::encode($basicInfo ? $basicInfo->name : Yii::$app->name) ?></a>. All Rights Reserved.
                         Designed by <a class="text-white border-bottom" href="https://htmlcodex.com"><?= $_ENV['APP_DEVELOPER'] ?></a></p>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+<!-- WhatsApp Button -->
+<a href="https://wa.me/<?= Html::encode($contactInfo->phone) ?>" class="whatsapp-btn" target="_blank">
+    <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path fill="currentColor" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+</a>
 
-    <?php $this->endBody() ?>
+<!-- Back to Top Button -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+<?php $this->endBody() ?>
 </body>
-
 </html>
 <?php $this->endPage() ?>
