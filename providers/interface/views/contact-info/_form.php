@@ -9,7 +9,7 @@ use helpers\widgets\ActiveForm;
 ?>
 
 <div class="contact-info-form card shadow-sm mb-3">
-    <div class="card-header bg-primary text-white">
+    <div class="card-header bg-secondary text-white">
         <h5 class="mb-0">Contact Information</h5>
     </div>
     <div class="card-body p-4">

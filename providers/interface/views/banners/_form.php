@@ -9,7 +9,7 @@ use helpers\widgets\ActiveForm;
 ?>
 
 <div class="banners-form card shadow-sm">
-    <div class="card-header bg-primary text-white">
+    <div class="card-header bg-secondary text-white">
         <h5 class="mb-0">Banner Details</h5>
     </div>
     <div class="card-body">
@@ -33,13 +33,14 @@ use helpers\widgets\ActiveForm;
                     ->fileInput(['id' => 'banner-file-input'])
                     ->label('Upload Banner', ['class' => 'form-label']); ?>
                 <img id="banner-preview" src="#" alt="Preview" class="img-thumbnail mt-2" style="max-width: 150px; display: none;">
-            </div>
-            <div class="col-md-6">
+                <div class="col-md-6">
     <?= $form->field($model, 'is_published')->checkbox([
         'label' => 'Publish',
         'class' => 'form-check-input',
     ])->label(true); ?>
 </div>
+            </div>
+          
 
 
         </div>

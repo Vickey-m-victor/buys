@@ -13,6 +13,7 @@ use Yii;
  * @property string $url
  * @property string|null $mission
  * @property string|null $vision
+ * @property string|null $core_values
  */
 class BasicInfo extends \yii\db\ActiveRecord
 {
@@ -32,7 +33,7 @@ class BasicInfo extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'url'], 'required'],
-            [['name', 'logoUrl', 'url', 'mission', 'vision'], 'string', 'max' => 255],
+            [['name', 'logoUrl', 'url', 'mission', 'vision', 'core_values'], 'string', 'max' => 255],
             [['file'], 'file', 'extensions' => 'png,jpeg,jpg,svg', 'skipOnEmpty' => true],
         ];
     }
@@ -45,6 +46,7 @@ class BasicInfo extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'core_values' => 'Core Values',
             'logoUrl' => 'Logo',
             'file' => 'Logo',
             'is_published'=>'',
