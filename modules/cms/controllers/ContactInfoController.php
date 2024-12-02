@@ -69,7 +69,7 @@ class ContactInfoController extends DashboardController
                 }
 
                 Yii::$app->session->setFlash('success', 'contact updated successfully.');
-                return $this->redirect(['/dashboard']);
+                return $this->redirect(['/cms/contact-info/update', 'id' => $model->id]);
             }
 
             Yii::$app->session->setFlash('error', 'Failed to update the banner.');

@@ -66,7 +66,7 @@ class BasicInfoController extends DashboardController
                 }
 
                 Yii::$app->session->setFlash('success', 'basic info updated successfully.');
-                return $this->redirect(['/dashboard']);
+                return $this->redirect(['/cms/basic-info/update', 'id' => $model->id]);
             }
 
             Yii::$app->session->setFlash('error', 'Failed');
