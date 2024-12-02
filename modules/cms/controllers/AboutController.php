@@ -53,7 +53,7 @@ class AboutController extends DashboardController
                 }
 
                 Yii::$app->session->setFlash('success', 'about us updated successfully.');
-                return $this->redirect(['/dashboard']);
+                return $this->redirect(['/cms/about/update', 'id' => $model->id]);
             }
 
             Yii::$app->session->setFlash('error', 'Failed');

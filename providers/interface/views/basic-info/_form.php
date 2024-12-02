@@ -63,7 +63,8 @@ use helpers\widgets\ActiveForm;
             <!-- Mission Field -->
             <div class="col-md-12">
                 <?= $form->field($model, 'mission')
-                    ->textInput([
+                    ->textarea([
+                        'rows' => 3,
                         'maxlength' => true, 
                         'placeholder' => 'Enter Mission', 
                         'class' => 'form-control form-control-sm',
@@ -74,7 +75,8 @@ use helpers\widgets\ActiveForm;
             <!-- Vision Field -->
             <div class="col-md-12">
                 <?= $form->field($model, 'vision')
-                    ->textInput([
+                    ->textarea([
+                        'rows' => 3,
                         'maxlength' => true, 
                         'placeholder' => 'Enter Vision', 
                         'class' => 'form-control form-control-sm',
@@ -83,7 +85,8 @@ use helpers\widgets\ActiveForm;
             </div>
             <div class="col-md-12">
                 <?= $form->field($model, 'core_values')
-                    ->textInput([
+                    ->textarea([
+                        'rows' => 3,
                         'maxlength' => true, 
                         'placeholder' => 'Enter Core Values', 
                         'class' => 'form-control form-control-sm',
