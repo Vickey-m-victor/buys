@@ -27,7 +27,41 @@ $contactInfo = ContactInfo::findOne(1);
             <h5 class="fw-bold text-primary text-uppercase">Contact Us</h5>
             <h1 class="mb-0">If You Have Any Query, Feel Free To Contact Us</h1>
         </div>
-
+        <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-phone-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Call to ask any question</h5>
+                            <h4 class="text-primary mb-0"><?= htmlspecialchars($contactInfo->phone, ENT_QUOTES, 'UTF-8') ?></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.4s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-envelope-open text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Email to get free quote</h5>
+                            <h4 class="text-primary mb-0"><?= htmlspecialchars($contactInfo->email, ENT_QUOTES, 'UTF-8') ?></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center wow fadeIn" data-wow-delay="0.8s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Visit our office</h5>
+                            <h4 class="text-primary mb-0"><?= htmlspecialchars($contactInfo->address, ENT_QUOTES, 'UTF-8') ?></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
             <div class="alert alert-success">
                 Thank you for contacting us. We will respond to you as soon as possible.

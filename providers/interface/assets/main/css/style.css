@@ -936,3 +936,31 @@ h6,
     font-size: 12px;
     color: #6c757d;
 }
+
+.whatsapp-btn {
+    position: fixed;
+    bottom: 12px; /* Positioned above the back-to-top button */
+    left: 20px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+    transform: scale(1.1);
+}
+
+.whatsapp-icon {
+    width: 30px;
+    height: 30px;
+}
