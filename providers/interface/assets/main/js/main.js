@@ -208,4 +208,15 @@ document.querySelectorAll('.feedback-btn').forEach(button => {
     });
 });
 
-
+function showMore(section) {
+    const content = document.getElementById(`${section}-content`);
+    const button = content.previousElementSibling;
+    
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        button.textContent = 'Show Less';
+    } else {
+        content.style.display = 'none';
+        button.textContent = 'Learn More';
+    }
+}

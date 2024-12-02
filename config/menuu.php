@@ -5,7 +5,7 @@ $userMenu = [
     ['title' => 'About', 'icon' => '', 'url' => 'site/abouts'],
     ['title' => 'Services', 'icon' => '', 'url' => 'site/services'],
     ['title' => 'Contact', 'icon' => '', 'url' => 'site/contact'],
-    ['title' => 'Admin', 'icon' => 'user', 'url' => '/dashboard'],
+    // ['title' => 'Admin', 'icon' => 'user', 'url' => '/dashboard'],
     // ['title' => 'Contact', 'icon' => 'Services', 'url' => 'home/contact'],
 
 ];

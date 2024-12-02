@@ -3,24 +3,46 @@
 use cms\models\ContactInfo;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use cms\models\Banners;
 
 /* @var $this yii\web\View */
 /* @var $model mail\models\static\ContactForm */
 
 $contactInfo = ContactInfo::findOne(1);
+$banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
+
 ?>
 
-<div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
-    <div class="row py-5">
-        <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-            <h1 class="display-4 text-white animated zoomIn">Contact Us</h1>
-            <a href="" class="h5 text-white">Home</a>
-            <i class="far fa-circle text-white px-2"></i>
-            <a href="" class="h5 text-white">Contact</a>
+
+<?php if (!empty($banners)): ?>
+    <?php 
+    // Assuming the first active banner is used for the background image
+    $banner = $banners[0]; 
+    ?>
+    <div class="container-fluid bg-primary py-5"
+    style="background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url(<?= Html::encode($banner->imageURL); ?>) center center no-repeat; background-size: cover; margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Contact</h1>
+                <a href="" class="h5 text-white">Best</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h5 text-white">Buys</a>
+            </div>
         </div>
     </div>
-</div>
-
+<?php else: ?>
+    <div class="container-fluid bg-primary py-5"
+    style="background: linear-gradient(rgba(9, 30, 62, .7), rgba(9, 30, 62, .7)), url(../img/carousel-1.jpg) center center no-repeat; background-size: cover; margin-bottom: 90px;">
+        <div class="row py-5">
+            <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+                <h1 class="display-4 text-white animated zoomIn">Contact</h1>
+                <a href="" class="h5 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h5 text-white">Contact</a>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">

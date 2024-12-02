@@ -22,9 +22,9 @@ $banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
         <div class="row py-5">
             <div class="col-12 pt-lg-5 mt-lg-5 text-center">
                 <h1 class="display-4 text-white animated zoomIn">About</h1>
-                <a href="" class="h5 text-white">Home</a>
+                <a href="" class="h5 text-white">Best</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h5 text-white">Services</a>
+                <a href="" class="h5 text-white">Buys</a>
             </div>
         </div>
     </div>
@@ -34,9 +34,9 @@ $banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
         <div class="row py-5">
             <div class="col-12 pt-lg-5 mt-lg-5 text-center">
                 <h1 class="display-4 text-white animated zoomIn">About</h1>
-                <a href="" class="h5 text-white">Home</a>
+                <a href="" class="h5 text-white">Best</a>
                 <i class="far fa-circle text-white px-2"></i>
-                <a href="" class="h5 text-white">Services</a>
+                <a href="" class="h5 text-white">Buys</a>
             </div>
         </div>
     </div>
@@ -85,64 +85,75 @@ $banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
     </div>
 </div>
 <!-- About End -->
-    <div class="mission-vision-section">
+<div class="mission-vision-section">
     <div class="container">
         <div class="text-center mb-5 animate-in">
-            <h1 class="display-4 mb-4">Shaping the <span class="highlight-text">Future</span></h1>
+            <h1 class="display-4 mb-4">Building Efficiency & <span class="highlight-text">Innovation</span></h1>
             <p class="lead">Innovating today for a better tomorrow</p>
         </div>
         <div class="row g-4">
-    <!-- Mission Section -->
-    <div class="col-md-6">
-        <div class="card h-100 animate-in" style="animation-delay: 0.2s">
-            <div class="card-body text-center">
-                <div class="card-icon">
-                    <i class="fas fa-rocket"></i>
+            <!-- Mission Section -->
+            <div class="col-md-4">
+                <div class="card h-100 animate-in" style="animation-delay: 0.2s">
+                    <div class="card-body text-center">
+                        <div class="card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h2 class="card-title mb-4">Our Mission</h2>
+                        <p class="card-text lead">
+                            <?= htmlspecialchars(explode('.', $basicInfo->mission)[0]) ?>
+                        </p>
+                        <button class="btn btn-outline-primary mt-3" onclick="showMore('mission')">
+                            Learn More
+                        </button>
+                        <div id="mission-content" class="mt-3" style="display: none;">
+                            <?= htmlspecialchars(trim(substr($basicInfo->mission, strpos($basicInfo->mission, '.') + 1))) ?>
+                        </div>
+                    </div>
                 </div>
-                <h2 class="card-title mb-4">Our Mission</h2>
-                <p class="card-text lead">
-                    <?= htmlspecialchars($basicInfo->mission) ?>
-                </p>
-                <button class="btn btn-outline-primary mt-3" onclick="showMore('mission')">
-                    Learn More
-                </button>
-                <div id="mission-content" class="mt-3" style="display: none;">
-                    <p>We strive to:</p>
-                    <ul class="list-unstyled">
-                        <li>✓ Drive digital transformation</li>
-                        <li>✓ Foster innovation</li>
-                        <li>✓ Build sustainable solutions</li>
-                    </ul>
+            </div>
+            
+            <!-- Vision Section -->
+            <div class="col-md-4">
+                <div class="card h-100 animate-in" style="animation-delay: 0.4s">
+                    <div class="card-body text-center">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h2 class="card-title mb-4">Our Vision</h2>
+                        <p class="card-text lead">
+                            <?= htmlspecialchars(explode('.', $basicInfo->vision)[0]) ?>
+                        </p>
+                        <button class="btn btn-outline-primary mt-3" onclick="showMore('vision')">
+                            Learn More
+                        </button>
+                        <div id="vision-content" class="mt-3" style="display: none;">
+                            <?= htmlspecialchars(trim(substr($basicInfo->vision, strpos($basicInfo->vision, '.') + 1))) ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Values Section -->
+            <div class="col-md-4">
+                <div class="card h-100 animate-in" style="animation-delay: 0.6s">
+                    <div class="card-body text-center">
+                        <div class="card-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h2 class="card-title mb-4">Core Values</h2>
+                        <p class="card-text lead">
+                            <?= htmlspecialchars(substr($basicInfo->core_values, 0, strpos($basicInfo->core_values, ':') + 1)) ?>
+                        </p>
+                        <button class="btn btn-outline-primary mt-3" onclick="showMore('values')">
+                            Learn More
+                        </button>
+                        <div id="values-content" class="mt-3" style="display: none;">
+                            <?= htmlspecialchars(trim(substr($basicInfo->core_values, strpos($basicInfo->core_values, ':') + 1))) ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Vision Section -->
-    <div class="col-md-6">
-        <div class="card h-100 animate-in" style="animation-delay: 0.4s">
-            <div class="card-body text-center">
-                <div class="card-icon">
-                    <i class="fas fa-eye"></i>
-                </div>
-                <h2 class="card-title mb-4">Our Vision</h2>
-                <p class="card-text lead">
-                    <?= htmlspecialchars($basicInfo->vision) ?>
-                </p>
-                <button class="btn btn-outline-primary mt-3" onclick="showMore('vision')">
-                    Learn More
-                </button>
-                <div id="vision-content" class="mt-3" style="display: none;">
-                    <p>We envision:</p>
-                    <ul class="list-unstyled">
-                        <li>✓ Global technology leadership</li>
-                        <li>✓ Sustainable development</li>
-                        <li>✓ Inclusive innovation</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
     </div>
 </div>
