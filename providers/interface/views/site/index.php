@@ -144,7 +144,7 @@ $patners = Partners::find()->where(['is_published' => 1,'is_deleted'=>0])->all()
                     </div>
                     <div>
                         <h5 class="mb-2">Call to ask any question</h5>
-                        <h4 class="text-primary mb-0">+012 345 6789</h4>
+                        <h4 class="text-primary mb-0"><?= htmlspecialchars($contactInfo->phone, ENT_QUOTES, 'UTF-8') ?></h4>
                     </div>
                 </div>
             </div>
@@ -162,45 +162,6 @@ $patners = Partners::find()->where(['is_published' => 1,'is_deleted'=>0])->all()
 </div>
 
 
-<div class="container">
-    <!-- Header Section -->
-    <div class="text-center mb-5 fade-in">
-        <h2 class="faq-title display-5 mb-4">Frequently Asked Questions</h2>
-        <p class="text-muted">Find answers to common questions about our services and solutions</p>
-    </div>
-
-    <!-- Search Box -->
-    <div class="search-box fade-in">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" class="form-control" placeholder="Search frequently asked questions..." id="faqSearch">
-    </div>
-
-    <!-- FAQ Accordion -->
-    <div class="accordion fade-in" id="faqAccordion">
-        <?php foreach ($faqs as $faq): ?>
-            <div class="accordion-item" data-category="general">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq<?= $faq->id ?>">
-                        <?= htmlspecialchars($faq->question) ?>
-                    </button>
-                </h2>
-                <div id="faq<?= $faq->id ?>" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body">
-                        <?= htmlspecialchars($faq->answer) ?>
-                        <div class="feedback-buttons mt-3">
-                            <button class="feedback-btn btn btn-outline-success btn-sm">
-                                <i class="fas fa-thumbs-up me-2"></i>Helpful
-                            </button>
-                            <button class="feedback-btn btn btn-outline-danger btn-sm">
-                                <i class="fas fa-thumbs-down me-2"></i>Not Helpful
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</div>
 
 <section class="partners-section">
     <div class="container">

@@ -44,6 +44,9 @@ class SiteController extends \helpers\WebController
     public function actionAbouts(){
         return $this->render('abouts');
     }
+    public function actionFaq(){
+        return $this->render('faq');
+    }
     public function actionContact()
 {
     $model = new ContactForm();  // Create the ContactForm model instance

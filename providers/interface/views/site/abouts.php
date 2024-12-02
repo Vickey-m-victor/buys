@@ -3,11 +3,14 @@ use cms\models\BasicInfo;
 use cms\models\About;
 use yii\helpers\Html;
 use cms\models\Banners;
+use cms\models\ContactInfo;
 
 
 $basicInfo = BasicInfo::findOne(1);
 $about = About::findOne(1);
 $banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
+$contactInfo = ContactInfo::findOne(1);
+
 
 
 ?>
@@ -62,16 +65,9 @@ $banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
                         <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Fair Prices</h5>
                     </div>
                 </div>
-                <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
-                    <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
-                        <i class="fa fa-phone-alt text-white"></i>
-                    </div>
-                    <div class="ps-4">
-                        <h5 class="mb-2">Call to ask any question</h5>
-                        <h4 class="text-primary mb-0">+012 345 6789</h4>
-                    </div>
-                </div>
-                <a href="quote.html" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Request A Quote</a>
+              
+       
+
             </div>
             <div class="col-lg-5" style="min-height: 500px;">
                 <div class="position-relative h-100">

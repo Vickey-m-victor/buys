@@ -493,7 +493,8 @@ h6,
 .mission-vision-section {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     min-height: 100vh;
-    padding: 80px 0;
+    padding-bottom: 80px;
+    padding-top: 100px;
 }
 
 .card {
@@ -666,7 +667,7 @@ h6,
 .accordion-button {
     background: white;
     border-radius: 10px !important;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    box-shadow: 6px 3px 15px rgba(0,0,0,0.05);
     padding: 1.2rem 1.25rem;
     transition: all 0.3s ease;
 }
@@ -940,7 +941,7 @@ h6,
 .whatsapp-btn {
     position: fixed;
     bottom: 12px; /* Positioned above the back-to-top button */
-    left: 20px;
+    left: 35px;
     background-color: #25d366;
     color: white;
     width: 60px;
@@ -963,4 +964,45 @@ h6,
 .whatsapp-icon {
     width: 30px;
     height: 30px;
+}
+/* Base styles for banner */
+.banner-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Default height for desktop */
+.carousel-item {
+    height: 100vh;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 80vh; /* Increased height for mobile */
+    }
+
+    .carousel-caption {
+        padding-bottom: 30px;
+    }
+
+    .carousel-caption h5 {
+        font-size: 1.2rem;
+    }
+
+    .carousel-caption h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 576px) {
+    .carousel-item {
+        height: 90vh; /* Even larger for smaller devices */
+    }
 }

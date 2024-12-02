@@ -52,16 +52,13 @@ $banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item bg-light rounded-lg shadow-hover p-4 h-100 transition-all" style="background-color: #f0f8ff;">
                             <div class="d-flex flex-column align-items-center">
-                                <div class="service-icon mb-4">
+                                <div class=" mb-4">
                                     <img src="<?= Html::encode($service->imageURL) ?>" alt="Service Image" 
                                          class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
                                 </div>
                                 <h4 class="mb-3 text-center"><?= Html::encode($service->title) ?></h4>
                                 <p class="text-center mb-4"><?= Html::encode($service->description) ?></p>
-                                <a class="btn btn-primary rounded-circle d-flex align-items-center justify-content-center" 
-                                   style="width: 45px; height: 45px;" href="">
-                                    <i class="bi bi-arrow-right"></i>
-                                </a>
+                          
                             </div>
                         </div>
                     </div>
