@@ -2,7 +2,7 @@
 
 use helpers\Html;
 use helpers\widgets\ActiveForm;
-
+use dosamigos\ckeditor\CKEditor;
 /** @var yii\web\View $this */
 /** @var cms\models\BasicInfo $model */
 /** @var helpers\widgets\ActiveForm $form */
@@ -63,11 +63,13 @@ use helpers\widgets\ActiveForm;
             <!-- Mission Field -->
             <div class="col-md-12">
                 <?= $form->field($model, 'mission')
-                    ->textarea([
-                        'rows' => 3,
-                        'maxlength' => true, 
-                        'placeholder' => 'Enter Mission', 
-                        'class' => 'form-control form-control-sm',
+                    ->widget(CKEditor::class, [
+                        'options' => ['rows' => 2],
+                        'preset' => 'basic',
+                        'clientOptions' => [
+                            'height' => 100,
+                       
+                        ],
                     ])
                     ->label('Mission', ['class' => 'form-label']); ?>
             </div>
@@ -75,23 +77,29 @@ use helpers\widgets\ActiveForm;
             <!-- Vision Field -->
             <div class="col-md-12">
                 <?= $form->field($model, 'vision')
-                    ->textarea([
-                        'rows' => 3,
-                        'maxlength' => true, 
-                        'placeholder' => 'Enter Vision', 
-                        'class' => 'form-control form-control-sm',
+                    ->widget(CKEditor::class, [
+                        'options' => ['rows' => 3],
+                        'preset' => 'basic',  // Changed to 'full' preset
+                        'clientOptions' => [
+                            'height' => 100,
+                       
+                        ],
                     ])
                     ->label('Vision', ['class' => 'form-label']); ?>
             </div>
+
+            <!-- Core Values Field -->
             <div class="col-md-12">
                 <?= $form->field($model, 'core_values')
-                    ->textarea([
-                        'rows' => 3,
-                        'maxlength' => true, 
-                        'placeholder' => 'Enter Core Values', 
-                        'class' => 'form-control form-control-sm',
+                    ->widget(CKEditor::class, [
+                        'options' => ['rows' => 1],
+                        'preset' => 'basic',
+                        'clientOptions' => [
+                            'height' => 100,
+                       
+                        ],
                     ])
-                    ->label('Core Values ', ['class' => 'form-label']); ?>
+                    ->label('Core Values', ['class' => 'form-label']); ?>
             </div>
         </div>
 

@@ -78,6 +78,8 @@ class m240118_110956_default_user_presets extends Migration
             'email_address' => 'admin@' . strtolower($_ENV['APP_CODE']) . '.com',
             'created_at' => time(),
             'updated_at' => time(),
+            //6JrnvNX.C>d9XV*
+           
         ));
         (new Assignment($uid))->assign(['su']);
         $uid = $this->uid('USERS', true);

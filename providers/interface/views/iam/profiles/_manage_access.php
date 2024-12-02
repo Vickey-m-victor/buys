@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\YiiAsset;
+use yii;
 
 /* @var $this yii\web\View */
 /* @var $model mdm\admin\models\Assignment */

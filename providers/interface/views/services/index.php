@@ -41,9 +41,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'title',
-            'description:ntext',
+            [
+              'attribute' => 'description',
+              'format' => 'raw', // Render raw content
+              'value' => function ($model) {
+                  return \yii\helpers\HtmlPurifier::process($model->description); // Sanitize HTML
+              },
+          ],
             [
               'attribute' => 'imageURL',
               'format' => 'html', // Render as HTML

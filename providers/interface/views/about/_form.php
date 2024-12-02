@@ -1,7 +1,7 @@
 <?php
 use helpers\Html;
 use helpers\widgets\ActiveForm;
-
+use dosamigos\ckeditor\CKEditor;
 /** @var yii\web\View $this */
 /** @var cms\models\About $model */
 /** @var helpers\widgets\ActiveForm $form */
@@ -19,48 +19,60 @@ use helpers\widgets\ActiveForm;
             ]
         ]); ?>
 
-        <div class="row g-3">
-            <div class="col-12">
-                <?= $form->field($model, 'title')->textInput([
-                    'maxlength' => true,
-                    'class' => 'form-control',
-                    'placeholder' => 'Enter title'
-                ]) ?>
+        <div class="row">
+            <!-- Form Fields Column -->
+            <div class="col-md-8">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <?= $form->field($model, 'title')->textInput([
+                            'maxlength' => true,
+                            'class' => 'form-control',
+                            'placeholder' => 'Enter title'
+                        ]) ?>
+                    </div>
+
+                    <div class="col-12">
+                        <?= $form->field($model, 'description')->widget(CKEditor::class, [
+                        'options' => ['rows' => 2],
+                        'preset' => 'basic',
+                        'clientOptions' => [
+                            'height' => 100,
+                       
+                        ],
+                    ]) ?>
+                    </div>
+
+                    <div class="col-12">
+                        <?= $form->field($model, 'file')->fileInput([
+                            'class' => 'form-control',
+                            'onchange' => 'previewAboutImage(event)',
+                            'accept' => 'image/*'
+                        ])->label('Upload Image') ?>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-12">
-                <?= $form->field($model, 'description')->textarea([
-                    'rows' => 4,
-                    'class' => 'form-control',
-                    'placeholder' => 'Enter description',
-                    'style' => 'resize: vertical; min-height: 100px;'
-                ]) ?>
-            </div>
-
-            <div class="col-md-6">
-                <?= $form->field($model, 'file')->fileInput([
-                    'class' => 'form-control',
-                    'onchange' => 'previewAboutImage(event)',
-                    'accept' => 'image/*'
-                ])->label('Upload Image') ?>
-            </div>
-            
-            <div class="col-md-6">
-                <div class="text-center">
-                    <label class="form-label">Image Preview</label>
-                    <?php if ($model->imageURL): ?>
-                        <img id="about-image-preview" 
-                             src="<?= $model->imageURL ?>" 
-                             alt="About Image Preview" 
-                             class="img-thumbnail"
-                             style="max-width: 150px; max-height: 150px; object-fit: cover;">
-                    <?php else: ?>
-                        <img id="about-image-preview" 
-                             src="#" 
-                             alt="No Image Selected" 
-                             class="img-thumbnail"
-                             style="display: none; max-width: 150px; max-height: 150px; object-fit: cover;">
-                    <?php endif; ?>
+            <!-- Image Preview Column -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-light">
+                        <h6 class="mb-0">Image Preview</h6>
+                    </div>
+                    <div class="card-body d-flex align-items-center justify-content-center">
+                        <?php if ($model->imageURL): ?>
+                            <img id="about-image-preview" 
+                                 src="<?= $model->imageURL ?>" 
+                                 alt="About Image Preview" 
+                                 class="img-thumbnail"
+                                 style="max-width: 100%; max-height: 200px; object-fit: contain;">
+                        <?php else: ?>
+                            <img id="about-image-preview" 
+                                 src="#" 
+                                 alt="No Image Selected" 
+                                 class="img-thumbnail"
+                                 style="display: none; max-width: 100%; max-height: 200px; object-fit: contain;">
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
