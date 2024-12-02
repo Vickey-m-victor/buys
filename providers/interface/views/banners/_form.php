@@ -1,20 +1,21 @@
 <?php
 
 use helpers\Html;
+use yii\widgets\Pjax;
 use helpers\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var cms\models\Banners $model */
 
 ?>
-
+<?php Pjax::begin() ?>
 <div class="banners-form card shadow-sm">
     <div class="card-header bg-secondary text-white">
         <h5 class="mb-0">Banner Details</h5>
     </div>
     <div class="card-body">
         <?php $form = ActiveForm::begin([
-            'options' => ['enctype' => 'multipart/form-data', 'id' => 'banner-form'],
+            'options' => ['data-pjax'=>true,'enctype' => 'multipart/form-data', 'id' => 'banner-form'],
         ]); ?>
 
         <div class="row g-3">
@@ -73,3 +74,4 @@ document.getElementById('banner-file-input').addEventListener('change', function
 JS;
 $this->registerJs($script);
 ?>
+<?php Pjax::end() ?>

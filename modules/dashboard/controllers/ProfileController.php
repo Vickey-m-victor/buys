@@ -41,7 +41,7 @@ class ProfileController extends DashboardController
     }
     public function actionCreate()
     {
-        Yii::$app->user->can('dashboard-profile-create');
+        // Yii::$app->user->can('dashboard-profile-create');
         $model = new Register();
         if ($this->request->isPost) {
             if ($model->load(Yii::$app->request->post())) {
@@ -63,7 +63,7 @@ class ProfileController extends DashboardController
     }
     public function actionUpdate($user_id)
     {
-        Yii::$app->user->can('dashboard-profile-update');
+        // Yii::$app->user->can('dashboard-profile-update');
         $model = $this->findModel($user_id);
 
         if ($this->request->isPost) {

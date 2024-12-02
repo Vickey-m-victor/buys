@@ -7,12 +7,12 @@ $userMenu = [
     ['title'=> 'Services','icon'=> 'computer','url'=>'/cms/services/index'],
     ['title'=> 'Partners','icon'=> 'signal','url'=> '/cms/partners/index'],
     ['title'=> 'Faqs','icon'=> 'question','url'=> '/cms/faqs/index'],
-    //  ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
-    //     ['title' => 'User Management', 'url' => '/dashboard/profile/index'],
-    //     ['title' => 'Manage Roles', 'url' => '/dashboard/role/index'],
-    //     ['title' => 'Manage Permissions', 'url' => '/dashboard/permission/index'],
-    //     ['title' => 'Manage Rules', 'url' => 'rule/index'],
-    // ]],
+     ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
+        ['title' => 'User Management', 'url' => '/dashboard/profile/index'],
+        ['title' => 'Manage Roles', 'url' => '/dashboard/role/index'],
+        ['title' => 'Manage Permissions', 'url' => '/dashboard/permission/index'],
+        // ['title' => 'Manage Rules', 'url' => 'rule/index'],
+    ]],
     ['title' => 'Settings', 'icon' => 'cog fa-spin', 'submenus' => [
         ['title' => 'Contact Settings', 'url' => '/cms/contact-info/update?id=1'],
         ['title' => 'Basic Settings', 'url' => '/cms/basic-info/update?id=1'],

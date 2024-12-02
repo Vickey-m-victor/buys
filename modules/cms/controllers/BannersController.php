@@ -60,8 +60,7 @@ class BannersController extends DashboardController
         Yii::$app->user->can('cms-banners-update');
         $model = $this->findModel($id);
 
-        $model = $this->findModel($id);
-        if ($this->request->isPost) {
+            if ($this->request->isPost) {
             $uploadedFile = UploadedFile::getInstance($model, 'file');
 
             if ($model->load($this->request->post()) && $model->validate() && $model->save(false)) {

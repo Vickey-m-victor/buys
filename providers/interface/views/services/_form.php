@@ -2,6 +2,7 @@
 
 use helpers\Html;
 use helpers\widgets\ActiveForm;
+use dosamigos\ckeditor\CKEditor;
 
 /** @var yii\web\View $this */
 /** @var cms\models\Services $model */
@@ -17,37 +18,53 @@ use helpers\widgets\ActiveForm;
             'options' => ['enctype' => 'multipart/form-data', 'id' => 'service-form'],
         ]); ?>
 
-        <div class="row g-3">
+        <div class="row g-4">
+            <!-- Title Field -->
             <div class="col-md-6">
                 <?= $form->field($model, 'title')
                     ->textInput(['maxlength' => true, 'placeholder' => 'Service Title'])
                     ->label('Title', ['class' => 'form-label']); ?>
             </div>
-          
+
+            <!-- Image Upload Field and Preview -->
             <div class="col-md-6">
-                <?= $form->field($model, 'file')
-                    ->fileInput(['id' => 'service-file-input'])
-                    ->label('Upload Service Image', ['class' => 'form-label']); ?>
-                <img id="service-preview" 
-                     src="<?= $model->imageURL ?: '#' ?>" 
-                     alt="Preview" 
-                     class="img-thumbnail mt-2" 
-                     style="max-width: 150px; <?= $model->imageURL ? '' : 'display: none;' ?>">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <?= $form->field($model, 'file')
+                            ->fileInput(['id' => 'service-file-input'])
+                            ->label('Upload Service Image', ['class' => 'form-label']); ?>
+                    </div>
+                    <div class="ms-3">
+                        <img id="service-preview" 
+                             src="<?= $model->imageURL ?: '#' ?>" 
+                             alt="Preview" 
+                             class="img-thumbnail" 
+                             style="max-width: 150px; <?= $model->imageURL ? '' : 'display: none;' ?>">
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
+
+            <!-- Description Field -->
+            <div class="col-md-12">
                 <?= $form->field($model, 'description')
-                    ->textarea(['rows' => 2, 'maxlength' => true, 'placeholder' => 'Brief Description'])
+                    ->widget(CKEditor::class, [
+                        'options' => ['rows' => 1],
+                        'preset' => 'basic',
+                        'clientOptions' => ['height' => 100],
+                    ])
                     ->label('Description', ['class' => 'form-label']); ?>
-                     <div class="col-md-6">
+            </div>
+
+            <!-- Publish Checkbox -->
+            <div class="col-md-12">
                 <?= $form->field($model, 'is_published')->checkbox([
                     'label' => 'Publish',
                     'class' => 'form-check-input',
                 ])->label(true); ?>
             </div>
-            </div>
-           
         </div>
 
+        <!-- Save Button -->
         <div class="text-center mt-4">
             <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-sm']) ?>
         </div>
