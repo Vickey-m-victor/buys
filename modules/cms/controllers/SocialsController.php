@@ -47,9 +47,13 @@ class SocialsController extends DashboardController
         } else {
             $model->loadDefaultValues();
         }
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+         if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
+        } else {
+            return $this->redirect(['index']);
+        }
     }
     public function actionUpdate($id)
     {
@@ -66,9 +70,13 @@ class SocialsController extends DashboardController
                 }
             }
         }
-        return $this->render('update', [
-            'model' => $model,
-        ]);
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
+        } else {
+            return $this->redirect(['index']);
+        }
     }
     public function actionTrash($id)
     {

@@ -9,8 +9,8 @@ $userMenu = [
     ['title'=> 'Faqs','icon'=> 'question','url'=> '/cms/faqs/index'],
      ['title' => 'IAM & Admin', 'icon' => 'shield', 'submenus' => [
         ['title' => 'User Management', 'url' => '/dashboard/profile/index'],
-        ['title' => 'Manage Roles', 'url' => '/dashboard/role/index'],
-        ['title' => 'Manage Permissions', 'url' => '/dashboard/permission/index'],
+        // ['title' => 'Manage Roles', 'url' => '/dashboard/role/index'],
+        // ['title' => 'Manage Permissions', 'url' => '/dashboard/permission/index'],
         // ['title' => 'Manage Rules', 'url' => 'rule/index'],
     ]],
     ['title' => 'Settings', 'icon' => 'cog fa-spin', 'submenus' => [

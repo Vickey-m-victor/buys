@@ -146,7 +146,13 @@ class ProfileController extends DashboardController
         Yii::$app->session->setFlash('error', 'Failed to change password. Please try again.');
     }
 
-    return $this->render('change-password', ['model' => $model]);
+    if (Yii::$app->request->isAjax) {
+        return $this->renderAjax('change-password', [
+            'model' => $model,
+        ]);
+    } else {
+        return $this->redirect(['/dashboard']);
+    }
 }
 
     protected function findModel($user_id)

@@ -1,14 +1,15 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\Pjax;
 ?>
-
+<?php Pjax::begin() ?>
 <div class="card mx-auto" style="max-width: 400px;">
     <div class="card-body">
-        <h5 class="card-title mb-3">Change Password</h5>
+
         
         <?php $form = ActiveForm::begin([
-            'id' => 'change-password-form',
+            'options' => ['data-pjax' => true,'id' => 'change-password-form'],
             'action' => ['/dashboard/profile/change-password'],
             'enableAjaxValidation' => true,
         ]); ?>
@@ -65,3 +66,4 @@ $script = <<<JS
 JS;
 $this->registerJs($script);
 ?>
+<?php Pjax::end() ?>

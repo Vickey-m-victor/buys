@@ -84,9 +84,9 @@ class Register extends Model
     $user->generateAuthKey();
 
     // Save user without validation (if you want validation, pass `true` instead)
-    // if ($user->save(false)) {
-    //     return $user;
-    // }
+    if ($user->save(false)) {
+        return $user;
+    }
 
     return null; // Return null if save fails
 }

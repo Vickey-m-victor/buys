@@ -54,6 +54,14 @@ class BannersController extends DashboardController
         return $this->render('create', [
             'model' => $model,
         ]);
+        // if (Yii::$app->request->isAjax) {
+        //     return $this->renderAjax('create', [
+        //         'model' => $model,
+        //     ]);
+        // } else {
+        //     return $this->redirect(['index']);
+        // }
+
     }
     public function actionUpdate($id)
     {

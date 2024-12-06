@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Url;
-use yii\helpers\Html;
+use helpers\Html;
+use helpers\grid\GridView;
+
 ?>
 <header id="page-header">
     <!-- Header Content -->
@@ -44,12 +46,20 @@ use yii\helpers\Html;
                             <span class="fs-sm fw-medium">Log Out</span>
                         </a>
                     </div>
+                    
                     <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between"
-                            href="<?= Url::to(['/dashboard/profile/change-password']) ?>">
-                            <span class="fs-sm fw-medium">change password</span>
-                        </a>
-                    </div>
+          <?= Html::customButton([
+            'type' => 'modal',
+            'url' => Url::to(['/dashboard/profile/change-password']),
+            'appearence' => [
+              'type' => 'text',
+              'text' => 'change password',
+              'theme' => 'none',
+              
+            ],
+            'modal' => ['title' => 'change password']
+          ]) ?>
+        </div>
           
             </div>
             <!-- END User Dropdown -->
