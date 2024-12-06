@@ -52,6 +52,21 @@ $patners = Partners::find()->where(['is_published' => 1,'is_deleted'=>0])->all()
         </button>
     </div>
 </div>
+<?php
+// Helper functions at the top of the file
+function extractStrongText($html) {
+    preg_match('/<strong>(.*?)<\/strong>/', $html, $matches);
+    return $matches[1] ?? '';
+}
+
+function extractParagraphText($html) {
+    // Remove strong tags and their content
+    $text = preg_replace('/<p><strong>.*?<\/strong>.*?<\/p>/', '', $html);
+    // Keep remaining p tags
+    return strip_tags($text, '<p>');
+}
+?>
+
 <div class="mission-vision-section">
     <div class="container">
         <div class="text-center mb-5 animate-in">
@@ -61,66 +76,66 @@ $patners = Partners::find()->where(['is_published' => 1,'is_deleted'=>0])->all()
         <div class="row g-4">
             <!-- Mission Section -->
             <div class="col-md-4">
-                <div class="card h-100 animate-in" style="animation-delay: 0.2s">
-                    <div class="card-body text-center">
-                        <div class="card-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h2 class="card-title mb-4">Our Mission</h2>
-                        <p class="card-text lead">
-                            <?= htmlspecialchars(explode('.', $basicInfo->mission)[0]) ?>
-                        </p>
-                        <button class="btn btn-outline-primary mt-3" onclick="showMore('mission')">
-                            Learn More
-                        </button>
-                        <div id="mission-content" class="mt-3" style="display: none;">
-                            <?= htmlspecialchars(trim(substr($basicInfo->mission, strpos($basicInfo->mission, '.') + 1))) ?>
-                        </div>
-                    </div>
-                </div>
+    <div class="card h-100 animate-in" style="animation-delay: 0.2s">
+        <div class="card-body text-center">
+            <div class="card-icon">
+                <i class="fas fa-rocket"></i>
             </div>
-            
-            <!-- Vision Section -->
-            <div class="col-md-4">
-                <div class="card h-100 animate-in" style="animation-delay: 0.4s">
-                    <div class="card-body text-center">
-                        <div class="card-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <h2 class="card-title mb-4">Our Vision</h2>
-                        <p class="card-text lead">
-                            <?= htmlspecialchars(explode('.', $basicInfo->vision)[0]) ?>
-                        </p>
-                        <button class="btn btn-outline-primary mt-3" onclick="showMore('vision')">
-                            Learn More
-                        </button>
-                        <div id="vision-content" class="mt-3" style="display: none;">
-                            <?= htmlspecialchars(trim(substr($basicInfo->vision, strpos($basicInfo->vision, '.') + 1))) ?>
-                        </div>
-                    </div>
-                </div>
+            <h2 class="card-title mb-4">Our Mission</h2>
+            <p class="card-text lead">
+                <?= htmlspecialchars(extractStrongText($basicInfo->mission)) ?>
+            </p>
+            <button class="btn btn-outline-primary mt-3" onclick="showMore('mission')">
+                Learn More
+            </button>
+            <div id="mission-content" class="mt-3" style="display: none;">
+                <?= extractParagraphText($basicInfo->mission) ?>
             </div>
+        </div>
+    </div>
+</div>
 
-            <!-- Core Values Section -->
-            <div class="col-md-4">
-                <div class="card h-100 animate-in" style="animation-delay: 0.6s">
-                    <div class="card-body text-center">
-                        <div class="card-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h2 class="card-title mb-4">Core Values</h2>
-                        <p class="card-text lead">
-                            <?= htmlspecialchars(substr($basicInfo->core_values, 0, strpos($basicInfo->core_values, ':') + 1)) ?>
-                        </p>
-                        <button class="btn btn-outline-primary mt-3" onclick="showMore('values')">
-                            Learn More
-                        </button>
-                        <div id="values-content" class="mt-3" style="display: none;">
-                            <?= htmlspecialchars(trim(substr($basicInfo->core_values, strpos($basicInfo->core_values, ':') + 1))) ?>
-                        </div>
-                    </div>
-                </div>
+<!-- Vision Section -->
+<div class="col-md-4">
+    <div class="card h-100 animate-in" style="animation-delay: 0.4s">
+        <div class="card-body text-center">
+            <div class="card-icon">
+                <i class="fas fa-eye"></i>
             </div>
+            <h2 class="card-title mb-4">Our Vision</h2>
+            <p class="card-text lead">
+                <?= htmlspecialchars(extractStrongText($basicInfo->vision)) ?>
+            </p>
+            <button class="btn btn-outline-primary mt-3" onclick="showMore('vision')">
+                Learn More
+            </button>
+            <div id="vision-content" class="mt-3" style="display: none;">
+                <?= extractParagraphText($basicInfo->vision) ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Core Values Section -->
+<div class="col-md-4">
+    <div class="card h-100 animate-in" style="animation-delay: 0.6s">
+        <div class="card-body text-center">
+            <div class="card-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <h2 class="card-title mb-4">Core Values</h2>
+            <p class="card-text lead">
+                <?= htmlspecialchars(extractStrongText($basicInfo->core_values)) ?>
+            </p>
+            <button class="btn btn-outline-primary mt-3" onclick="showMore('values')">
+                Learn More
+            </button>
+            <div id="values-content" class="mt-3" style="display: none;">
+                <?= extractParagraphText($basicInfo->core_values) ?>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 </div>
@@ -193,24 +208,30 @@ $patners = Partners::find()->where(['is_published' => 1,'is_deleted'=>0])->all()
 
 <script>
     // PHP to JavaScript: Convert PHP services array to JS
-   
     const services = <?= json_encode($services, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
     let currentServiceIndex = 0;
 
-function updateServiceContent() {
-    const service = services[currentServiceIndex];
-    if (service) {
-        document.getElementById('serviceTitle').innerText = service.title;
-        document.getElementById('serviceDescription').innerText = service.description;
-        document.getElementById('serviceImage').src = service.imageURL;
-        currentServiceIndex = (currentServiceIndex + 1) % services.length;
+    function updateServiceContent() {
+        const service = services[currentServiceIndex];
+        if (service) {
+            // Ensure only plain text is displayed
+            document.getElementById('serviceTitle').innerText = service.title;
+            document.getElementById('serviceDescription').innerText = stripHTML(service.description);
+            document.getElementById('serviceImage').src = service.imageURL;
+            currentServiceIndex = (currentServiceIndex + 1) % services.length;
+        }
     }
-}
 
-// Update content every 5 seconds
-setInterval(updateServiceContent, 5000);
+    // Utility function to strip HTML tags
+    function stripHTML(input) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = input;
+        return tempDiv.textContent || tempDiv.innerText || '';
+    }
 
-// Initialize with the first service
-updateServiceContent();
+    // Update content every 5 seconds
+    setInterval(updateServiceContent, 5000);
 
+    // Initialize with the first service
+    updateServiceContent();
 </script>

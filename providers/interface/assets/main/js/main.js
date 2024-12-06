@@ -208,15 +208,56 @@ document.querySelectorAll('.feedback-btn').forEach(button => {
     });
 });
 
-function showMore(section) {
-    const content = document.getElementById(`${section}-content`);
-    const button = content.previousElementSibling;
+/**
+ * Toggle visibility of content when Learn More is clicked
+ * Also changes button text between "Learn More" and "Show Less"
+ */
+function showMore(id) {
+    const content = document.getElementById(`${id}-content`);
+    const button = event.currentTarget;
     
-    if (content.style.display === 'none') {
-        content.style.display = 'block';
-        button.textContent = 'Show Less';
+    if (!content) {
+        console.error(`Element with id ${id}-content not found`);
+        return;
+    }
+
+    if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+        button.textContent = "Show Less";
     } else {
-        content.style.display = 'none';
-        button.textContent = 'Learn More';
+        content.style.display = "none";
+        button.textContent = "Learn More";
     }
 }
+
+// Add event listeners when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all content sections to be hidden
+    ['mission', 'vision', 'values'].forEach(id => {
+        const content = document.getElementById(`${id}-content`);
+        if (content) {
+            content.style.display = "none";
+        }
+    });
+});
+// Feedback buttons
+document.querySelectorAll('.feedback-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const feedbackSection = this.closest('.feedback-buttons');
+        const wasHelpful = this.classList.contains('btn-outline-success');
+        
+        // Toggle active state
+        feedbackSection.querySelectorAll('.feedback-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.classList.remove('btn-success', 'btn-danger');
+            btn.classList.add(btn.classList.contains('btn-outline-success') ? 'btn-outline-success' : 'btn-outline-danger');
+        });
+        
+        this.classList.add('active');
+        this.classList.remove(wasHelpful ? 'btn-outline-success' : 'btn-outline-danger');
+        this.classList.add(wasHelpful ? 'btn-success' : 'btn-danger');
+        
+        // Here you could add code to send feedback to your server
+        console.log(`Feedback recorded: ${wasHelpful ? 'Helpful' : 'Not Helpful'}`);
+    });
+});
