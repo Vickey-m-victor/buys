@@ -22,7 +22,7 @@ class m231209_121135_init extends Migration
         ], $tableOptions);
 
         $this->createTable('{{%users}}', [
-            'user_id' => $this->bigPrimaryKey(),
+            'user_id' => $this->bigInteger(),
             'username' => $this->string(64)->notNull()->unique(),
             'auth_key' => $this->string(32),
             'password_hash' => $this->string()->notNull(),
