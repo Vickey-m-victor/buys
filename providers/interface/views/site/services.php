@@ -57,7 +57,8 @@ $banners = Banners::find()->where(['is_published' => 1,'is_deleted'=>0])->all();
                                          class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
                                 </div>
                                 <h4 class="mb-3 text-center"><?= Html::encode($service->title) ?></h4>
-                                <p class="text-center mb-4"><?= Html::encode($service->description) ?></p>
+                                <p class="text-center mb-4"><?= nl2br(Html::decode($service->description)) ?></p>
+
                           
                             </div>
                         </div>

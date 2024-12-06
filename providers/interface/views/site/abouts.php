@@ -54,7 +54,7 @@ $contactInfo = ContactInfo::findOne(1);
                     <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
                     <h1 class="mb-0"><?= htmlspecialchars($about->title, ENT_QUOTES, 'UTF-8') ?></h1>
                 </div>
-                <p class="mb-4"><?= nl2br(htmlspecialchars($about->description, ENT_QUOTES, 'UTF-8')) ?></p>
+                <p class="mb-4"><?= nl2br(Html::decode($about->description)) ?></p>
                 <div class="row g-0 mb-3">
                     <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
                         <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Award Winning</h5>
@@ -81,75 +81,90 @@ $contactInfo = ContactInfo::findOne(1);
     </div>
 </div>
 <!-- About End -->
+<?php
+// Helper functions at the top of the file
+function extractStrongText($html) {
+    preg_match('/<strong>(.*?)<\/strong>/', $html, $matches);
+    return $matches[1] ?? '';
+}
+
+function extractParagraphText($html) {
+    // Remove strong tags and their content
+    $text = preg_replace('/<p><strong>.*?<\/strong>.*?<\/p>/', '', $html);
+    // Keep remaining p tags
+    return strip_tags($text, '<p>');
+}
+?>
+
 <div class="mission-vision-section">
     <div class="container">
         <div class="text-center mb-5 animate-in">
-            <h1 class="display-4 mb-4">Building Efficiency & <span class="highlight-text">Innovation</span></h1>
+            <h1 class="display-4 mb-4">Shaping the <span class="highlight-text">Future</span></h1>
             <p class="lead">Innovating today for a better tomorrow</p>
         </div>
         <div class="row g-4">
             <!-- Mission Section -->
             <div class="col-md-4">
-                <div class="card h-100 animate-in" style="animation-delay: 0.2s">
-                    <div class="card-body text-center">
-                        <div class="card-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h2 class="card-title mb-4">Our Mission</h2>
-                        <p class="card-text lead">
-                            <?= htmlspecialchars(explode('.', $basicInfo->mission)[0]) ?>
-                        </p>
-                        <button class="btn btn-outline-primary mt-3" onclick="showMore('mission')">
-                            Learn More
-                        </button>
-                        <div id="mission-content" class="mt-3" style="display: none;">
-                            <?= htmlspecialchars(trim(substr($basicInfo->mission, strpos($basicInfo->mission, '.') + 1))) ?>
-                        </div>
-                    </div>
-                </div>
+    <div class="card h-100 animate-in" style="animation-delay: 0.2s">
+        <div class="card-body text-center">
+            <div class="card-icon">
+                <i class="fas fa-rocket"></i>
             </div>
-            
-            <!-- Vision Section -->
-            <div class="col-md-4">
-                <div class="card h-100 animate-in" style="animation-delay: 0.4s">
-                    <div class="card-body text-center">
-                        <div class="card-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <h2 class="card-title mb-4">Our Vision</h2>
-                        <p class="card-text lead">
-                            <?= htmlspecialchars(explode('.', $basicInfo->vision)[0]) ?>
-                        </p>
-                        <button class="btn btn-outline-primary mt-3" onclick="showMore('vision')">
-                            Learn More
-                        </button>
-                        <div id="vision-content" class="mt-3" style="display: none;">
-                            <?= htmlspecialchars(trim(substr($basicInfo->vision, strpos($basicInfo->vision, '.') + 1))) ?>
-                        </div>
-                    </div>
-                </div>
+            <h2 class="card-title mb-4">Our Mission</h2>
+            <p class="card-text lead">
+                <?= htmlspecialchars(extractStrongText($basicInfo->mission)) ?>
+            </p>
+            <button class="btn btn-outline-primary mt-3" onclick="showMore('mission')">
+                Learn More
+            </button>
+            <div id="mission-content" class="mt-3" style="display: none;">
+                <?= extractParagraphText($basicInfo->mission) ?>
             </div>
+        </div>
+    </div>
+</div>
 
-            <!-- Core Values Section -->
-            <div class="col-md-4">
-                <div class="card h-100 animate-in" style="animation-delay: 0.6s">
-                    <div class="card-body text-center">
-                        <div class="card-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h2 class="card-title mb-4">Core Values</h2>
-                        <p class="card-text lead">
-                            <?= htmlspecialchars(substr($basicInfo->core_values, 0, strpos($basicInfo->core_values, ':') + 1)) ?>
-                        </p>
-                        <button class="btn btn-outline-primary mt-3" onclick="showMore('values')">
-                            Learn More
-                        </button>
-                        <div id="values-content" class="mt-3" style="display: none;">
-                            <?= htmlspecialchars(trim(substr($basicInfo->core_values, strpos($basicInfo->core_values, ':') + 1))) ?>
-                        </div>
-                    </div>
-                </div>
+<!-- Vision Section -->
+<div class="col-md-4">
+    <div class="card h-100 animate-in" style="animation-delay: 0.4s">
+        <div class="card-body text-center">
+            <div class="card-icon">
+                <i class="fas fa-eye"></i>
             </div>
+            <h2 class="card-title mb-4">Our Vision</h2>
+            <p class="card-text lead">
+                <?= htmlspecialchars(extractStrongText($basicInfo->vision)) ?>
+            </p>
+            <button class="btn btn-outline-primary mt-3" onclick="showMore('vision')">
+                Learn More
+            </button>
+            <div id="vision-content" class="mt-3" style="display: none;">
+                <?= extractParagraphText($basicInfo->vision) ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Core Values Section -->
+<div class="col-md-4">
+    <div class="card h-100 animate-in" style="animation-delay: 0.6s">
+        <div class="card-body text-center">
+            <div class="card-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <h2 class="card-title mb-4">Core Values</h2>
+            <p class="card-text lead">
+                <?= htmlspecialchars(extractStrongText($basicInfo->core_values)) ?>
+            </p>
+            <button class="btn btn-outline-primary mt-3" onclick="showMore('values')">
+                Learn More
+            </button>
+            <div id="values-content" class="mt-3" style="display: none;">
+                <?= extractParagraphText($basicInfo->core_values) ?>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 </div>
