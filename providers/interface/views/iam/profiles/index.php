@@ -23,7 +23,7 @@ $this->title = 'List of User Accounts';
               'type' => 'text',
               'text' => 'Create User',
               'theme' => 'primary',
-              'visible' => Yii::$app->user->can('dashboard-accounts-create', true)
+              'visible' => Yii::$app->user->can('dashboard-profile-create', true)
             ],
             'modal' => ['title' => 'New User']
           ]) ?>
@@ -38,20 +38,20 @@ $this->title = 'List of User Accounts';
           'dataProvider' => $dataProvider,
           'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            [
-              "attribute" => "profile.full_name",
-              'enableSorting' => true,
-              "content" => function ($model) {
-                return $model->profile->full_name;
-              }
-            ],
-            [
-              "attribute" => "profile.email_address",
-              'enableSorting' => true,
-              "content" => function ($model) {
-                return $model->profile->email_address;
-              }
-            ],
+            // [
+            //   "attribute" => "profile.full_name",
+            //   'enableSorting' => true,
+            //   "content" => function ($model) {
+            //     return $model->profile->full_name;
+            //   }
+            // ],
+            // [
+            //   "attribute" => "profile.email_address",
+            //   'enableSorting' => true,
+            //   "content" => function ($model) {
+            //     return $model->profile->email_address;
+            //   }
+            // ],
             'username',
             [
               "attribute" => "status",
@@ -64,16 +64,16 @@ $this->title = 'List of User Accounts';
             //'updated_at',
             [
               'class' => \helpers\grid\ActionColumn::className(),
-              'template' => '{update} {manage} {trash}',
+              'template' => '{manage} {trash}',
               'headerOptions' => ['width' => '10%'],
               'contentOptions' => ['style' => 'text-align: center;'],
               'buttons' => [
                 'manage' => function ($url, $model, $key) {
                   return Html::customButton(['type' => 'modal', 'url' => Url::to(['assignment', 'id' => $key]), 'modal' => ['title' => 'Manage {' . $model->username . '} Roles', 'size' => 'lg'], 'appearence' => ['icon' => 'user-shield', 'theme' => 'success']]);
                 },
-                'update' => function ($url, $model, $key) {
-                  return Html::customButton(['type' => 'modal', 'url' => Url::toRoute(['update', 'user_id' => $model->user_id]), 'modal' => ['title' => 'Update  User'], 'appearence' => ['icon' => 'edit', 'theme' => 'info']]);
-                },
+                // 'update' => function ($url, $model, $key) {
+                //   return Html::customButton(['type' => 'modal', 'url' => Url::toRoute(['change-password', 'theme'=> 'primary', 'user_id' => $model->user_id]), 'modal' => ['title' => 'Update  User'], 'appearence' => ['icon' => 'edit', 'theme' => 'info']]);
+                // },
                 'trash' => function ($url, $model, $key) {
                   return $model->is_deleted !== 1 ?
                     Html::customButton(['type' => 'link', 'url' => Url::toRoute(['trash', 'user_id' => $model->user_id]),  'appearence' => ['icon' => 'trash', 'theme' => 'danger', 'data' => ['message' => 'Do you want to delete this user?']]]) :
@@ -82,15 +82,15 @@ $this->title = 'List of User Accounts';
               ],
               'visibleButtons' => [
                 'manage' => function ($model) {
-                  return Yii::$app->user->can('dashboard-accounts-assignment', true) && $model->is_deleted !== 1 ? true : false;
+                  return Yii::$app->user->can('dashboard-profile-assignment', true) && $model->is_deleted !== 1 ? true : false;
                 },
-                'update' => function ($model) {
-                  return Yii::$app->user->can('dashboard-accounts-update', true) && $model->is_deleted !== 1 ? true : false;
-                },
+                // 'update' => function ($model) {
+                //   return Yii::$app->user->can('dashboard-profile-update', true) && $model->is_deleted !== 1 ? true : false;
+                // },
                 'trash' => function ($model) {
                   return $model->is_deleted !== 1 ?
-                    Yii::$app->user->can('dashboard-accounts-delete', true) :
-                    Yii::$app->user->can('dashboard-accounts-restore', true);
+                    Yii::$app->user->can('dashboard-profile-delete', true) :
+                    Yii::$app->user->can('dashboard-profile-restore', true);
                 },
               ],
             ],

@@ -9,6 +9,7 @@ use auth\models\static\Register;
 use helpers\DashboardController;
 use yii\web\NotFoundHttpException;
 use auth\models\searches\UserSearch;
+use auth\models\static\ChangePassword;  
 
 /**
  * ProfileController implements the CRUD actions for User model.
@@ -41,7 +42,7 @@ class ProfileController extends DashboardController
     }
     public function actionCreate()
     {
-        // Yii::$app->user->can('dashboard-profile-create');
+        Yii::$app->user->can('dashboard-profile-create');
         $model = new Register();
         if ($this->request->isPost) {
             if ($model->load(Yii::$app->request->post())) {
@@ -63,7 +64,7 @@ class ProfileController extends DashboardController
     }
     public function actionUpdate($user_id)
     {
-        // Yii::$app->user->can('dashboard-profile-update');
+        Yii::$app->user->can('dashboard-profile-update');
         $model = $this->findModel($user_id);
 
         if ($this->request->isPost) {
@@ -131,6 +132,23 @@ class ProfileController extends DashboardController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function actionChangePassword()
+{
+    $user = Yii::$app->user->identity; // Get the currently logged-in user
+    $model = new ChangePassword($user);
+
+    if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+        if ($model->changePassword()) {
+            Yii::$app->session->setFlash('success', 'Password changed successfully.');
+            return $this->redirect(['/dashboard']); // Redirect to the user profile or another page
+        }
+        Yii::$app->session->setFlash('error', 'Failed to change password. Please try again.');
+    }
+
+    return $this->render('change-password', ['model' => $model]);
+}
+
     protected function findModel($user_id)
     {
         $class = Yii::$app->getUser()->identityClass;

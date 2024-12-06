@@ -67,6 +67,7 @@ class m241123_133005_cms extends Migration
             'url' => 'https://www.techsolutions.com',
             'mission' => 'To deliver cutting-edge tech solutions.',
             'vision' => 'To be the leader in innovation and excellence.',
+            'core_values' => 'Innovation, Excellence, Integrity',
             'is_published' => 1,
             'is_deleted' => 0,   // Not deleted
             'created_at' => time(),

@@ -91,7 +91,7 @@ $rules = array_combine($rules, $rules);
                   return Html::customButton(['type' => 'modal', 'url' => Url::to(['manage-role', 'id' => $key]), 'modal' => ['title' => 'Manage {' . $model->data . '} Role', 'size' => 'lg'], 'appearence' => ['icon' => 'cogs', 'theme' => 'success']]);
                 },
                 'update' => function ($url, $model, $key) {
-                  return Html::customButton(['type' => 'modal', 'url' => Url::to(['update', 'id' => $key]), 'modal' => ['title' => 'Update  Users'], 'appearence' => ['icon' => 'edit', 'theme' => 'primary']]);
+                  return Html::customButton(['type' => 'link', 'url' => Url::to(['update', 'id' => $key]), 'modal' => ['title' => 'Update  Users'], 'appearence' => ['icon' => 'edit', 'theme' => 'primary']]);
                 },
                 'delete' => function ($url, $model, $key) {
                   return Html::customButton(['type' => 'link', 'url' => Url::to(['delete', 'id' => $key]),  'appearence' => ['icon' => 'trash', 'theme' => 'danger', 'data' => ['message' => 'Do you want to delete this record?']]]);

@@ -33,7 +33,7 @@ class BasicInfo extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'url'], 'required'],
-            [['name', 'logoUrl', 'url', 'mission', 'vision', 'core_values'], 'string', 'max' => 255],
+            [['name', 'logoUrl', 'url', 'mission', 'vision', 'core_values'], 'string', 'max' => 400],
             [['file'], 'file', 'extensions' => 'png,jpeg,jpg,svg', 'skipOnEmpty' => true],
         ];
     }

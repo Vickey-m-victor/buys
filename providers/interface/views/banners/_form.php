@@ -15,37 +15,46 @@ use helpers\widgets\ActiveForm;
     </div>
     <div class="card-body">
         <?php $form = ActiveForm::begin([
-            'options' => ['data-pjax'=>true,'enctype' => 'multipart/form-data', 'id' => 'banner-form'],
+            'options' => ['data-pjax' => true, 'enctype' => 'multipart/form-data', 'id' => 'banner-form'],
         ]); ?>
 
         <div class="row g-3">
+            <!-- Title Field -->
             <div class="col-md-6">
                 <?= $form->field($model, 'title')
                     ->textInput(['maxlength' => true, 'placeholder' => 'Banner Title'])
                     ->label('Title', ['class' => 'form-label']); ?>
             </div>
+
+            <!-- Description Field -->
             <div class="col-md-6">
                 <?= $form->field($model, 'description')
                     ->textarea(['rows' => 2, 'maxlength' => true, 'placeholder' => 'Brief Description'])
                     ->label('Description', ['class' => 'form-label']); ?>
             </div>
+
+            <!-- Image Upload Field and Preview -->
             <div class="col-md-6">
                 <?= $form->field($model, 'file')
                     ->fileInput(['id' => 'banner-file-input'])
                     ->label('Upload Banner', ['class' => 'form-label']); ?>
-                <img id="banner-preview" src="#" alt="Preview" class="img-thumbnail mt-2" style="max-width: 150px; display: none;">
-                <div class="col-md-6">
-    <?= $form->field($model, 'is_published')->checkbox([
-        'label' => 'Publish',
-        'class' => 'form-check-input',
-    ])->label(true); ?>
-</div>
+                <img id="banner-preview" 
+                     src="<?= $model->imageURL ?: '#' ?>" 
+                     alt="Preview" 
+                     class="img-thumbnail mt-2" 
+                     style="max-width: 150px; <?= $model->imageURL ? '' : 'display: none;' ?>">
             </div>
-          
 
-
+            <!-- Publish Checkbox -->
+            <div class="col-md-6">
+                <?= $form->field($model, 'is_published')->checkbox([
+                    'label' => 'Publish',
+                    'class' => 'form-check-input',
+                ])->label(false); ?>
+            </div>
         </div>
 
+        <!-- Save Button -->
         <div class="text-center mt-4">
             <?= Html::submitButton('Save', ['class' => 'btn btn-success btn-sm']) ?>
         </div>

@@ -27,6 +27,7 @@ class User extends BaseModel implements \yii\web\IdentityInterface
         return static::findOne(['user_id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
+
     public static function findIdentityByAccessToken($token, $type = null)
     {
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
@@ -173,4 +174,11 @@ class User extends BaseModel implements \yii\web\IdentityInterface
     {
         return $this->hasOne(Profiles::class, ['user_id' => 'user_id']);
     }
+    public function changePassword($newPassword)
+    {
+        $this->setPassword($newPassword); // Hashes the password
+        $this->updated_at = time(); // Update the timestamp
+        return $this->save(false); // Save without validation (assuming other fields are valid)
+    }
+
 }
