@@ -135,17 +135,20 @@ class ProfileController extends DashboardController
 
     public function actionChangePassword()
 {
-    $user = Yii::$app->user->identity; // Get the currently logged-in user
+    $user = Yii::$app->user->identity; 
     $model = new ChangePassword($user);
 
-    if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-        if ($model->changePassword()) {
-            Yii::$app->session->setFlash('success', 'Password changed successfully.');
-            return $this->redirect(['/dashboard']); // Redirect to the user profile or another page
+    if ($model->load(Yii::$app->request->post()) && !$model->validate()) {
+        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return ['success' => false, 'errors' => $model->getErrors()];
         }
-        Yii::$app->session->setFlash('error', 'Failed to change password. Please try again.');
     }
 
+    if ($model->validate() && $model->changePassword()) {
+        Yii::$app->session->setFlash('success', 'Password changed successfully.');
+        return $this->redirect(['/dashboard']);
+    }
     if (Yii::$app->request->isAjax) {
         return $this->renderAjax('change-password', [
             'model' => $model,

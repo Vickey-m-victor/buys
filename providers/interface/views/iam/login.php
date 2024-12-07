@@ -11,7 +11,7 @@ use helpers\widgets\ActiveForm;
             <div class="block-header block-header-default">
                 <h3 class="block-title">Sign In</h3>
                 <div class="block-options">
-                    <a class="btn-block-option fs-sm" href="site/">Forgot Password?</a>
+                    <!-- <a class="btn-block-option fs-sm" href="site/">Forgot Password?</a> -->
                 </div>
             </div>
             <div class="block-content">

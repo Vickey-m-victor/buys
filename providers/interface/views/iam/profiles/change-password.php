@@ -42,27 +42,34 @@ use yii\widgets\Pjax;
 
 <?php
 $script = <<<JS
-    $('#change-password-form').on('beforeSubmit', function(e) {
-        e.preventDefault();
-        var form = $(this);
-        $.ajax({
-            url: form.attr('action'),
-            type: 'POST',
-            data: form.serialize(),
-            success: function(response) {
-                if (response.success) {
-                    form[0].reset();
-                    alert(response.message);
-                } else {
-                    alert(response.message);
-                }
-            },
-            error: function() {
-                alert('An error occurred while processing your request.');
+   $('#change-password-form').on('beforeSubmit', function(e) {
+    e.preventDefault();
+    var form = $(this);
+    $.ajax({
+        url: form.attr('action'),
+        type: 'POST',
+        data: form.serialize(),
+        success: function(response) {
+            if (response.success) {
+                alert('Password changed successfully.');
+                form[0].reset();
+            } else if (response.errors) {
+                $.each(response.errors, function(field, messages) {
+                    var input = form.find('[name="ChangePassword[' + field + ']"]');
+                    var errorContainer = input.closest('.form-group').find('.help-block');
+                    errorContainer.html(messages.join('<br>'));
+                });
+            } else {
+                alert('Failed to change password. Please try again.');
             }
-        });
-        return false;
+        },
+        error: function() {
+            alert('An error occurred while processing your request.');
+        }
     });
+    return false;
+});
+
 JS;
 $this->registerJs($script);
 ?>

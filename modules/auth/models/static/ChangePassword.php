@@ -22,7 +22,7 @@ class ChangePassword extends Model
     {
         return [
             [['currentPassword', 'newPassword', 'confirmPassword'], 'required'],
-            ['currentPassword', 'validateCurrentPassword'],
+            ['currentPassword', 'validateCurrentPassword', 'message' => 'Incorrect current password.'],
             ['newPassword', 'string', 'min' => 4],
             ['confirmPassword', 'compare', 'compareAttribute' => 'newPassword', 'message' => 'Passwords do not match.'],
         ];
