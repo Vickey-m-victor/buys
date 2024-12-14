@@ -54,7 +54,7 @@ MainAsset::register($this);
             <div class="col-lg-8 col-md-6">
                 <div class="d-flex align-items-center justify-content-center" style="height: 75px;">
                     <p class="mb-0">&copy; <a class="text-white border-bottom" href="#"><?= Html::encode($basicInfo ? $basicInfo->name : Yii::$app->name) ?></a>. All Rights Reserved.
-                        Designed by <a class="text-white border-bottom" href="https://htmlcodex.com"><?= $_ENV['APP_DEVELOPER'] ?></a></p>
+                        Designed by <a class="text-white border-bottom" href="https://crackit.co.ke"><?= $_ENV['APP_DEVELOPER'] ?></a></p>
                 </div>
             </div>
         </div>
